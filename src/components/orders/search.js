@@ -7,15 +7,10 @@ const Search = ({ orderJson }) => {
     }
 
     const [searchField, setSearchField] = useState("");
-    // const [filteredOrders, setfilteredOrders] = useState("");
 
     const handleChange = e => {
         setSearchField(e.target.value);
     };
-
-    // useEffect(() => {
-    //     setfilteredOrders(orderJson);
-    // }, []);
 
     const filteredOrders = orderJson.filter(
         order => {

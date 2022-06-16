@@ -1,12 +1,12 @@
 import './App.css';
 import React from "react";
-import OrderHistory from './components/orders/orders';
 
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard';
 import ProductDetails from './components/Product/ProductDetails';
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
+import Orders from './components/orders/orders';
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/orders' element={<Orders />} />
         </Routes>
       </BrowserRouter>
 
@@ -26,13 +27,5 @@ function App() {
   );
 }
 
-export default function App(){
 
-  return <>
-    <BrowserRouter>
-      <Routes>
-        <Route exact path="/" element={<OrderHistory/>} />
-      </Routes> 
-    </BrowserRouter>
-  </>
-}
+export default App;

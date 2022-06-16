@@ -1,4 +1,4 @@
-import {Container, Row, Col, Nav, NavItem, NavLink} from "reactstrap";
+import { Row, Col, Nav, NavItem, NavLink} from "reactstrap";
 import React from "react";
 import facebookIcon from "../Footer/facebook.png"
 import instagramIcon from "../Footer/instagram.png"

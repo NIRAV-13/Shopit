@@ -54,6 +54,14 @@ const ProductArray = [
         price: 200,
         category: "Children",
         desc: 'Cotton black long sleeved sweatshirt'
+    },
+    {
+        img: 'https://source.unsplash.com/982Nb-awyVE',
+        title: 'Childrens Black shirt',
+        id: 7,
+        price: 200,
+        category: "Children",
+        desc: 'Cotton black long sleeved sweatshirt'
     }
 ];
 
