@@ -1,3 +1,7 @@
 node_modules/
 package-lock.json
+<<<<<<< HEAD
 .DS_Store
+=======
+.DS_Store
+>>>>>>> 1fe16f3aea3b8efd11bbfc405cf3c4b1e841d4dd

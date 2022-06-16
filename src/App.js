@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import Dashboard from './components/Dashboard/Dashboard';
+import ProductDetails from './components/Product/ProductDetails';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello World!
-        </p>
-        <a
-          className="App-link"
-          href="https://git.cs.dal.ca/nirav/csci_5709_advance_web_group_20/-/tree/main"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Link to my individual repository
-        </a>
-      </header>
+
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Dashboard />} />
+          <Route path='/product/:id' element={<ProductDetails />} />
+        </Routes>
+      </BrowserRouter>
+
     </div>
   );
 }
