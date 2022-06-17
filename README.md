@@ -14,7 +14,7 @@
 
 ## TA
 
-[Nikunj Goenka]
+[Nikunj Goenka]  (nikunj.goenka@dal.ca)
 
 
 ## Authors
