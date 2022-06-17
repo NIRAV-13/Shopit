@@ -79,6 +79,5 @@ Description: For setting up a basic react application.
 StackOverflow (https://stackoverflow.com/)
 Description: We used stack overflow for some difficulties we faced in the development of UI.
 
-Please feel free to reach out to us in case of any issues.
 
 Thank you.
