@@ -28,6 +28,7 @@ export default class NavBar extends Component {
 
                             <Nav className="ml-auto">
                                 <Nav.Link as={Link} to="/orders">Orders</Nav.Link>
+                                <Nav.Link as={Link} to="/giftcards">Gift Cards</Nav.Link>
                                 <Nav.Link as={Link} to="/cart">Cart</Nav.Link>
                                 <Nav.Link as={Link} to="/login">Login</Nav.Link>
                             </Nav>

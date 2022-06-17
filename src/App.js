@@ -10,8 +10,13 @@ import Orders from './components/orders/orders';
 import Cart from './components/Cart/Cart';
 import Home from "./pages/home/Home";
 import List from "./pages/list/List";
+import GiftCards from './components/GiftCards/GiftCards'
+import data from './components/back/Data/Data';
+import AddGiftcard from './components/ADDGiftcard/AddGiftcard';
+import Table from './components/ADDGiftcard/Table';
 
-function App() {
+function App({BuyCardhandling, tableData}) {
+  const { productItems } =data;
   return (
     <div className="App">
 
@@ -30,10 +35,12 @@ function App() {
           <Route path ="/products" element={<Home />} />
           <Route path ="/orders_admin" element={<Home />} />
           <Route path ="/notifications" element={<Home />} />
-          <Route path ="/gift" element={<Home />} />
+          <Route path="/giftcards_add/addgiftcard" element={<AddGiftcard/>}/>
+          <Route path="/giftcardss_add/addgiftcard/table" element={<Table tableData={tableData}/>}/> 
           <Route path ="/profile" element={<Home />} />
           <Route path ="/logout" element={<Home />} />
           <Route path ="/offer" element={<List />} />
+          <Route path="/giftcards" element={<GiftCards productItems={productItems} BuyCardhandling={BuyCardhandling}/>} />
         
         </Routes>
       </BrowserRouter>

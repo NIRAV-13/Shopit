@@ -47,7 +47,7 @@ const Sidebar = () => {
                             <span>Notifications</span>
                         </li>
                     </Link>
-                    <Link to="/gift" style={{ textDecoration: "none" }}>
+                    <Link to="/giftcards/addgiftcard" style={{ textDecoration: "none" }}>
                         <li>
                             <CardGiftcardIcon className="icon" />
                             <span>Gift Cards</span>
