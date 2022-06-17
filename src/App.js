@@ -7,13 +7,10 @@ import ProductDetails from './components/Product/ProductDetails';
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
 import Orders from './components/orders/orders';
-<<<<<<< HEAD
 import Wishlist from './components/wishlist/wishList';
-=======
 import Cart from './components/Cart/Cart';
 import Home from "./pages/home/Home";
 import List from "./pages/list/List";
->>>>>>> developer
 
 function App() {
   return (
