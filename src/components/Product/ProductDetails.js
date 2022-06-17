@@ -24,7 +24,7 @@ const ProductDetails = () => {
                 return (
                     <>
                         <NavBar></NavBar>
-                        <div className="card1 mb-3 mt-5" >
+                        <div className="card mb-3 mt-5" >
                             <div className="row g-0">
                                 <div className="col-md-6">
                                     <img src={prod.img} className="img-fluid rounded-start" alt="..." />
