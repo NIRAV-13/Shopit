@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# Project Group 20
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Date Created: 03 June, 2022
 
-## Available Scripts
+- Last Modification Date: 16 June, 2022
 
-In the project directory, you can run:
+- Git URL: https://git.cs.dal.ca/nirav/csci_5709_advance_web_group_20/-/tree/developer/
 
-### `npm start`
+- Deployment URL:https://shopit-ecommerce13.herokuapp.com/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Professor
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+[Shehzeen Huda] (sh655624@dal.ca)
 
-### `npm test`
+## TA
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Nikunj Goenka]  (nikunj.goenka@dal.ca)
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Authors
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Tanvi Pruthi - B00875949
+- Shivam Dinesh Rank - B00897772
+- Sherrin Raji - B00877086
+- Nirav Radadiya - B00909651
+- Lavita Pereira - B00879443
+- Tejaswini Rallapalli - B00888478
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+See deployment for notes on how to deploy the project on a live system.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Prerequisites
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To develop a project in React, first we have to download and install node js on our local machine. Furthermore, we have install npx plugins in our node folder.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+List of Required Softwares and Plugins:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1.  Node JS (environment)
 
-## Learn More
+2.  NPX plugins
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3.  JavaScript (Programming language)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4.  React JS: Package
 
-### Code Splitting
+List of Dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. React-router-dom
 
-### Analyzing the Bundle Size
+2. React-icons
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3. emotion
 
-### Making a Progressive Web App
+4. material-ui (mui)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+5. bootstrap
 
-### Advanced Configuration
+6. react-icons
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Built With
 
-### `npm run build` fails to minify
+- [Reactjs](https://reactjs.org/docs/getting-started.html) - The frontend web framework used
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Material UI](https://mui.com/) - For more enhanced User Interface
+
+- [Nodejs](https://nodejs.org/en/docs/) - The backend web frameword used
+
+- [heroku](https://dashboard.heroku.com/apps) - The deployment platform
+
+
+## Acknowledgments and References
+
+React (https://create-react-app.dev/))
+Description: For setting up a basic react application.
+
+StackOverflow (https://stackoverflow.com/)
+Description: We used stack overflow for some difficulties we faced in the development of UI.
+
+
+Thank you.
