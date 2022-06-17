@@ -4,7 +4,7 @@
 
 - Last Modification Date: 16 June, 2022
 
-- Git URL:
+- Git URL: https://git.cs.dal.ca/nirav/csci_5709_advance_web_group_20/-/tree/developer/
 
 - Deployment URL:https://shopit-ecommerce13.herokuapp.com/
 
