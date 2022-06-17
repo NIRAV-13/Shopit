@@ -7,7 +7,13 @@ import ProductDetails from './components/Product/ProductDetails';
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
 import Orders from './components/orders/orders';
+<<<<<<< HEAD
 import Wishlist from './components/wishlist/wishList';
+=======
+import Cart from './components/Cart/Cart';
+import Home from "./pages/home/Home";
+import List from "./pages/list/List";
+>>>>>>> developer
 
 function App() {
   return (
@@ -22,6 +28,18 @@ function App() {
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/orders' element={<Orders />} />
           <Route path='/wishlist' element={<Wishlist />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path ="/admin" element={<Home />} />
+          <Route path ="/users" element={<List />} />
+          <Route path ="/dashboard_admin" element={<Home />} />
+          <Route path ="/products" element={<Home />} />
+          <Route path ="/orders_admin" element={<Home />} />
+          <Route path ="/notifications" element={<Home />} />
+          <Route path ="/gift" element={<Home />} />
+          <Route path ="/profile" element={<Home />} />
+          <Route path ="/logout" element={<Home />} />
+          <Route path ="/offer" element={<List />} />
+        
         </Routes>
       </BrowserRouter>
 
