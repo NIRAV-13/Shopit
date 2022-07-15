@@ -11,13 +11,14 @@ import Wishlist from './components/wishlist/wishList';
 import Cart from './components/Cart/Cart';
 import Home from "./pages/home/Home";
 import List from "./pages/list/List";
-import GiftCards from './components/GiftCards/GiftCards'
-import data from './components/back/Data/Data';
-import AddGiftcard from './components/ADDGiftcard/AddGiftcard';
-import Table from './components/ADDGiftcard/Table';
+import Giftcard from './components/Giftcards/Giftcard';
+import GiftcardDetails from './components/Giftcards/GiftcardDetails';
 
-function App({BuyCardhandling, tableData}) {
-  const { productItems } =data;
+// import AddGiftcard from './components/ADDGiftcard/AddGiftcard';
+// import Table from './components/ADDGiftcard/Table';
+
+function App() {
+
   return (
     <div className="App">
 
@@ -37,12 +38,13 @@ function App({BuyCardhandling, tableData}) {
           <Route path ="/products" element={<Home />} />
           <Route path ="/orders_admin" element={<Home />} />
           <Route path ="/notifications" element={<Home />} />
-          <Route path="/giftcards_add/addgiftcard" element={<AddGiftcard/>}/>
-          <Route path="/giftcardss_add/addgiftcard/table" element={<Table tableData={tableData}/>}/> 
+          {/* <Route path="/giftcards_add/addgiftcard" element={<AddGiftcard/>}/>
+          <Route path="/giftcardss_add/addgiftcard/table" element={<Table tableData={tableData}/>}/>  */}
           <Route path ="/profile" element={<Home />} />
           <Route path ="/logout" element={<Home />} />
           <Route path ="/offer" element={<List />} />
-          <Route path="/giftcards" element={<GiftCards productItems={productItems} BuyCardhandling={BuyCardhandling}/>} />
+          <Route path='giftcards/giftcard/:id' element={<GiftcardDetails />} />
+          <Route path ="/giftcards" element={<Giftcard />} />
         
         </Routes>
       </BrowserRouter>
