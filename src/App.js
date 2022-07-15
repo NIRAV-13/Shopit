@@ -11,34 +11,21 @@ import Wishlist from './components/wishlist/wishList';
 import Cart from './components/Cart/Cart';
 import Home from "./pages/home/Home";
 import List from "./pages/list/List";
-<<<<<<< HEAD
 import Giftcard from './components/Giftcards/Giftcard';
 import GiftcardDetails from './components/Giftcards/GiftcardDetails';
+import UserProfile from './components/UserProfile/Profile'
+import ForgotPassword from './components/ForgotPassword/ForgotPassword'
 
 // import AddGiftcard from './components/ADDGiftcard/AddGiftcard';
 // import Table from './components/ADDGiftcard/Table';
 
 function App() {
-=======
-import GiftCards from './components/GiftCards/GiftCards'
-import data from './components/back/Data/Data';
-import AddGiftcard from './components/ADDGiftcard/AddGiftcard';
-import Table from './components/ADDGiftcard/Table';
-import UserProfile from './components/UserProfile/Profile'
-import ForgotPassword from './components/ForgotPassword/ForgotPassword'
+// import GiftCards from './components/GiftCards/GiftCards'
+// import data from './components/back/Data/Data';
+// import AddGiftcard from './components/ADDGiftcard/AddGiftcard';
+// import Table from './components/ADDGiftcard/Table';
 
-function App({ BuyCardhandling, tableData }) {
-
-  const { productItems } = data;
-
-  // const [data, setData] = React.useState(null);
-
-  // React.useEffect(() => {
-  //   fetch("/api")
-  //     .then((res) => res.json())
-  //     .then((data) => setData(data.message));
-  // }, []);
->>>>>>> 8e9b14aa6860722c0d941ff23743f5866623c534
+  
 
   return (
     <div className="App">
@@ -54,37 +41,21 @@ function App({ BuyCardhandling, tableData }) {
           <Route path='/orders' element={<Orders />} />
           <Route path='/wishlist' element={<Wishlist />} />
           <Route path='/cart' element={<Cart />} />
-<<<<<<< HEAD
-          <Route path ="/admin" element={<Home />} />
-          <Route path ="/users" element={<List />} />
-          <Route path ="/dashboard_admin" element={<Home />} />
-          <Route path ="/products" element={<Home />} />
-          <Route path ="/orders_admin" element={<Home />} />
-          <Route path ="/notifications" element={<Home />} />
-          {/* <Route path="/giftcards_add/addgiftcard" element={<AddGiftcard/>}/>
-          <Route path="/giftcardss_add/addgiftcard/table" element={<Table tableData={tableData}/>}/>  */}
-          <Route path ="/profile" element={<Home />} />
-          <Route path ="/logout" element={<Home />} />
-          <Route path ="/offer" element={<List />} />
-          <Route path='giftcards/giftcard/:id' element={<GiftcardDetails />} />
-          <Route path ="/giftcards" element={<Giftcard />} />
-        
-=======
           <Route path="/admin" element={<Home />} />
           <Route path="/users" element={<List />} />
           <Route path="/dashboard_admin" element={<Home />} />
           <Route path="/products" element={<Home />} />
           <Route path="/orders_admin" element={<Home />} />
           <Route path="/notifications" element={<Home />} />
-          <Route path="/giftcards_add/addgiftcard" element={<AddGiftcard />} />
-          <Route path="/giftcardss_add/addgiftcard/table" element={<Table tableData={tableData} />} />
+          {/* <Route path="/giftcards_add/addgiftcard" element={<AddGiftcard />} />
+          <Route path="/giftcardss_add/addgiftcard/table" element={<Table tableData={tableData} />} /> */}
           <Route path="/profile" element={<Home />} />
           <Route path="/userprofile" element={<UserProfile />} />
           <Route path="/logout" element={<Home />} />
           <Route path="/offer" element={<List />} />
-          <Route path="/giftcards" element={<GiftCards productItems={productItems} BuyCardhandling={BuyCardhandling} />} />
+          <Route path='giftcards/giftcard/:id' element={<GiftcardDetails />} />
+          <Route path="/giftcards" element={<Giftcard />} />
 
->>>>>>> 8e9b14aa6860722c0d941ff23743f5866623c534
         </Routes>
       </BrowserRouter>
     </div>
