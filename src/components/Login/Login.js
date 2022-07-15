@@ -60,6 +60,7 @@ const Login = (props) => {
 
   const formRegisterClickHandler = async () => {
     history("/dashboard")
+    localStorage.setItem("email",enteredEmail);
   };
 
   return (
@@ -142,6 +143,21 @@ const Login = (props) => {
                         New Customer?{" "}
                         <NavLink to="/register">
                           Create you account!
+                        </NavLink>
+                      </span>
+                    </label>
+                  </Col>
+                </Row>
+                <Row className="my-4">
+                  <Col xs="12">
+                    <label
+                        className="custom-control-label"
+                        htmlFor="customCheckRegister"
+                    >
+                      <span className="text-muted">
+                        New Customer?{" "}
+                        <NavLink to="/forgotpassword">
+                          Forgot Password?
                         </NavLink>
                       </span>
                     </label>

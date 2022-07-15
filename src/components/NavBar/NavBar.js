@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 export default class NavBar extends Component {
     render() {
+        const isLoggedIn = localStorage.getItem("email")
         return (
             <div>
                 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -12,6 +13,7 @@ export default class NavBar extends Component {
                         <Navbar.Brand as={Link} to="/">ShopIT</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
+
                             <Nav className="me-auto">
                                 <Nav.Link as={Link} to="/">Home</Nav.Link>
                             </Nav>
@@ -24,13 +26,22 @@ export default class NavBar extends Component {
                                 />
                                 <Button className="btn btn-light" type="submit">Search</Button>
                             </Form>
-
+                            {isLoggedIn ? (
                             <Nav className="ml-auto">
                                 <Nav.Link as={Link} to="/orders">Orders</Nav.Link>
                                 <Nav.Link as={Link} to="/giftcards">Gift Cards</Nav.Link>
                                 <Nav.Link as={Link} to="/cart">Cart</Nav.Link>
+                                <Nav.Link as={Link} onClick={()=>localStorage.setItem("email","")} to="/login">Logout</Nav.Link>
+                                <Nav.Link as={Link} to="/userprofile">{isLoggedIn}</Nav.Link>
+                            </Nav>):
+                                (
+                           <Nav className="ml-auto">
+                                <Nav.Link as={Link} to="/login">Orders</Nav.Link>
+                                <Nav.Link as={Link} to="/login">Gift Cards</Nav.Link>
+                                <Nav.Link as={Link} to="/login">Cart</Nav.Link>
                                 <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                            </Nav>
+                            </Nav>)}
+                        }
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>

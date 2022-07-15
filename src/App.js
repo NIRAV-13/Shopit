@@ -15,6 +15,8 @@ import GiftCards from './components/GiftCards/GiftCards'
 import data from './components/back/Data/Data';
 import AddGiftcard from './components/ADDGiftcard/AddGiftcard';
 import Table from './components/ADDGiftcard/Table';
+import UserProfile from './components/UserProfile/Profile'
+import ForgotPassword from './components/ForgotPassword/ForgotPassword'
 
 function App({BuyCardhandling, tableData}) {
   const { productItems } =data;
@@ -26,6 +28,7 @@ function App({BuyCardhandling, tableData}) {
           <Route path='/' element={<Dashboard />} />
           <Route path='/product/:id' element={<ProductDetails />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/forgotpassword' element={<ForgotPassword />} />
           <Route path='/register' element={<Register />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/orders' element={<Orders />} />
@@ -40,6 +43,7 @@ function App({BuyCardhandling, tableData}) {
           <Route path="/giftcards_add/addgiftcard" element={<AddGiftcard/>}/>
           <Route path="/giftcardss_add/addgiftcard/table" element={<Table tableData={tableData}/>}/> 
           <Route path ="/profile" element={<Home />} />
+          <Route path ="/userprofile" element={<UserProfile />} />
           <Route path ="/logout" element={<Home />} />
           <Route path ="/offer" element={<List />} />
           <Route path="/giftcards" element={<GiftCards productItems={productItems} BuyCardhandling={BuyCardhandling}/>} />
