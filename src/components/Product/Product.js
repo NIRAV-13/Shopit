@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import { Link } from 'react-router-dom'
 import ProductArray from './ProductArray'
 
@@ -10,7 +10,6 @@ const Product = () => {
         });
         setData(result)
     }
-    
     return (
         <div>
             <div className='container-fluid mx-2'>

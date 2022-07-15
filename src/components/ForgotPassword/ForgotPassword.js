@@ -1,3 +1,7 @@
+import React from "react";
+import {useNavigate} from "react-router-dom";
+import useInput from "../../hooks/use-input";
+import "./ForgotPassord.css";
 import {
   Button,
   Card,
@@ -9,43 +13,23 @@ import {
   Input,
   InputGroup,
   InputGroupText,
-  Row,
 } from "reactstrap";
-
-import userIcon from "../Register/usericon.png"
-import "./register.css";
-import React from "react";
-import {NavLink, useNavigate} from "react-router-dom";
-import useInput from "../../hooks/use-input";
+import userIcon from "./usericon.png"
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 
-// Email Validation Regex
-const regex =
-    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+let invalidLogin = false;
 
 const regexPassword =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
-// Handle input changes
 const simpleChangeHandler = (event) => {
   return event.target.value;
 };
 
-const Register = (props) => {
+const ForgotPassword = (props) => {
   const history = useNavigate();
 
-  // Email
-  const {
-    value: enteredEmail,
-    isValid: enteredEmailIsValid,
-    hasError: emailInputHasError,
-    valueChangeHandler: emailChangeHandler,
-    inputBlurHandler: emailBlurHandler,
-    reset: resetEmailInput,
-  } = useInput((value) => regex.test(value) === true, simpleChangeHandler);
-
-  // Password
   const {
     value: enteredPassword,
     isValid: enteredPasswordIsValid,
@@ -55,7 +39,6 @@ const Register = (props) => {
     reset: resetPasswordInput,
   } = useInput((value) => regexPassword.test(value) === true, simpleChangeHandler); // Not using trim here as passwords may contain spaces in the beginning or end
 
-  // Password
   const {
     value: enteredConfirmPassword,
     isValid: enteredConfirmPasswordIsValid,
@@ -63,24 +46,22 @@ const Register = (props) => {
     valueChangeHandler: confirmPasswordChangeHandler,
     inputBlurHandler: confirmPasswordBlurHandler,
     reset: resetConfirmPasswordInput,
-  } = useInput((value) => value.trim() === enteredPassword, simpleChangeHandler); // Not using trim here as passwords may contain spaces in the beginning or end
+  } = useInput((value) => value.trim() === enteredPassword, simpleChangeHandler);
 
   let formIsValid = false;
 
-  if (enteredEmailIsValid && enteredPasswordIsValid) {
+  if (enteredConfirmPasswordIsValid && enteredPasswordIsValid) {
     formIsValid = true;
   }
 
   const formRegisterClickHandler = async () => {
-    history("/dashboard")
-    localStorage.setItem("email",enteredEmail);
+    history("/login");
   };
 
-
   return (
-      <div className="bg-image">
+      <div className="bg-image-login">
         <NavBar/>
-        <Col className="card-border-register">
+        <Col className="card-border">
           <Card>
             <CardHeader>
               <div className="text-center">
@@ -101,28 +82,11 @@ const Register = (props) => {
               </div>
             </CardHeader>
             <CardBody className="px-lg-5 py-lg-5">
-              <div className="text-center text-muted mb-4">
-                <b>CREATE ACCOUNT</b>
+              <div className="text-center">
+                <b>CHANGE PASSWORD</b>
               </div>
+            <label/>
               <Form role="form">
-                <label className="display-label"><b>Enter your email ID</b></label>
-                <FormGroup>
-                  <InputGroup className="input-group-alternative mb-3">
-                    <InputGroupText>
-                      📧
-                    </InputGroupText>
-                    <Input
-                        placeholder="Your valid email address"
-                        id="email"
-                        type="email"
-                        autoComplete="new-email"
-                        onChange={emailChangeHandler}
-                        onBlur={emailBlurHandler}
-                        value={enteredEmail}
-                        className="form-control"
-                    />
-                  </InputGroup>
-                </FormGroup>
                 <label className="display-label"><b>Password</b></label>
                 <FormGroup>
                   <InputGroup className="input-group-alternative">
@@ -141,53 +105,44 @@ const Register = (props) => {
                     />
                   </InputGroup>
                 </FormGroup>
+
                 <label className="display-label"><b>Confirm Password</b></label>
                 <FormGroup>
-                  <InputGroup className="input-group-alternative mb-3">
+                  <InputGroup className="input-group-alternative">
                     <InputGroupText>
                       🔒
                     </InputGroupText>
                     <Input
-                        placeholder="Your password confirmation"
+                        placeholder="Enter your password again"
                         id="confirmPassword"
                         type="password"
-                        className="form-control"
+                        autoComplete="new-password"
                         onChange={confirmPasswordChangeHandler}
                         onBlur={confirmPasswordBlurHandler}
                         value={enteredConfirmPassword}
+                        className="form-control"
                     />
                   </InputGroup>
                 </FormGroup>
-                <Row className="my-4">
-                  <Col xs="12">
-                    <label
-                        className="custom-control-label"
-                        htmlFor="customCheckRegister"
-                    >
-                      <span className="text-muted">
-                        Already have an account?{" "}
-                        <NavLink to="/login">
-                          Login
-                        </NavLink>
-                      </span>
-                    </label>
-                  </Col>
-                </Row>
+                <label/>
+
                 <div className="text-center">
-                  <Button onClick={formRegisterClickHandler} className="mt-10" color="primary" type="button"
-                          disabled={!formIsValid}>
-                    SIGN UP
+                  <Button onClick={formRegisterClickHandler} color="primary"
+                          type="button" disabled={!formIsValid}>
+                    Change Password
                   </Button>
                 </div>
+                <label/>
+                {confirmPasswordInputHasError && (
+                    <p className="text-danger">* Must contain alpha-numeric, special and minimum 8 characters.</p>
+                )}
                 {passwordInputHasError && (
                     <p className="text-danger">* Must contain alpha-numeric, special and minimum 8 characters.</p>
                 )}
-                {emailInputHasError && (
-                    <p className="text-danger">* Invalid Email ID.</p>
+                {invalidLogin && (
+                    <p className="text-danger">* Passwords doesn't match, please enter again.</p>
                 )}
-                {confirmPasswordInputHasError && (
-                    <p className="text-danger">* Password doesn't match.</p>
-                )}
+
               </Form>
             </CardBody>
           </Card>
@@ -197,4 +152,4 @@ const Register = (props) => {
   );
 };
 
-export default Register;
+export default ForgotPassword;
