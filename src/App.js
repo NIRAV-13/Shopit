@@ -18,8 +18,18 @@ import Table from './components/ADDGiftcard/Table';
 import UserProfile from './components/UserProfile/Profile'
 import ForgotPassword from './components/ForgotPassword/ForgotPassword'
 
-function App({BuyCardhandling, tableData}) {
-  const { productItems } =data;
+function App({ BuyCardhandling, tableData }) {
+
+  const { productItems } = data;
+
+  // const [data, setData] = React.useState(null);
+
+  // React.useEffect(() => {
+  //   fetch("/api")
+  //     .then((res) => res.json())
+  //     .then((data) => setData(data.message));
+  // }, []);
+
   return (
     <div className="App">
 
@@ -34,23 +44,22 @@ function App({BuyCardhandling, tableData}) {
           <Route path='/orders' element={<Orders />} />
           <Route path='/wishlist' element={<Wishlist />} />
           <Route path='/cart' element={<Cart />} />
-          <Route path ="/admin" element={<Home />} />
-          <Route path ="/users" element={<List />} />
-          <Route path ="/dashboard_admin" element={<Home />} />
-          <Route path ="/products" element={<Home />} />
-          <Route path ="/orders_admin" element={<Home />} />
-          <Route path ="/notifications" element={<Home />} />
-          <Route path="/giftcards_add/addgiftcard" element={<AddGiftcard/>}/>
-          <Route path="/giftcardss_add/addgiftcard/table" element={<Table tableData={tableData}/>}/> 
-          <Route path ="/profile" element={<Home />} />
-          <Route path ="/userprofile" element={<UserProfile />} />
-          <Route path ="/logout" element={<Home />} />
-          <Route path ="/offer" element={<List />} />
-          <Route path="/giftcards" element={<GiftCards productItems={productItems} BuyCardhandling={BuyCardhandling}/>} />
-        
+          <Route path="/admin" element={<Home />} />
+          <Route path="/users" element={<List />} />
+          <Route path="/dashboard_admin" element={<Home />} />
+          <Route path="/products" element={<Home />} />
+          <Route path="/orders_admin" element={<Home />} />
+          <Route path="/notifications" element={<Home />} />
+          <Route path="/giftcards_add/addgiftcard" element={<AddGiftcard />} />
+          <Route path="/giftcardss_add/addgiftcard/table" element={<Table tableData={tableData} />} />
+          <Route path="/profile" element={<Home />} />
+          <Route path="/userprofile" element={<UserProfile />} />
+          <Route path="/logout" element={<Home />} />
+          <Route path="/offer" element={<List />} />
+          <Route path="/giftcards" element={<GiftCards productItems={productItems} BuyCardhandling={BuyCardhandling} />} />
+
         </Routes>
       </BrowserRouter>
-
     </div>
   );
 }

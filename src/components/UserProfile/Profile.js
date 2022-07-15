@@ -5,7 +5,7 @@ import {Card, CardBody, CardHeader} from "reactstrap";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 
-const userName = localStorage.getItem("email").split("@")[0]
+const userName = ""
 const emailId = localStorage.getItem("email")
 
 const Profile = (props) => {
