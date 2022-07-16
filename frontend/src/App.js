@@ -11,8 +11,8 @@ import Wishlist from './components/wishlist/wishList';
 import Cart from './components/Cart/Cart';
 import Home from "./pages/home/Home";
 import List from "./pages/list/List";
-import Giftcard from './components/Giftcards/Giftcard';
-import GiftcardDetails from './components/Giftcards/GiftcardDetails';
+// import Giftcard from './components/Giftcards/Giftcard';
+// import GiftcardDetails from './components/Giftcards/GiftcardDetails';
 import UserProfile from './components/UserProfile/Profile'
 import ForgotPassword from './components/ForgotPassword/ForgotPassword'
 
@@ -52,8 +52,8 @@ function App() {
           <Route path="/userprofile" element={<UserProfile />} />
           <Route path="/logout" element={<Home />} />
           <Route path="/offer" element={<List />} />
-          <Route path='giftcards/giftcard/:id' element={<GiftcardDetails />} />
-          <Route path="/giftcards" element={<Giftcard />} />
+          {/* <Route path='giftcards/giftcard/:id' element={<GiftcardDetails />} /> */}
+          {/* <Route path="/giftcards" element={<Giftcard />} /> */}
 
         </Routes>
       </BrowserRouter>

@@ -6,10 +6,7 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 
 const userName = ""
-<<<<<<< HEAD:frontend/src/components/UserProfile/Profile.js
 // localStorage.getItem("email").split("@")[0]
-=======
->>>>>>> developer:src/components/UserProfile/Profile.js
 const emailId = localStorage.getItem("email")
 
 const Profile = (props) => {
