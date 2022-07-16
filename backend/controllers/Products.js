@@ -12,6 +12,7 @@ const addProduct = async (req, res) => {
         productDescription: req.body.productDescription,
         productImage: req.body.productImage,
         createdDate: createdDate,
+        // size: req.body.size,
     })
 
     await product.save();
