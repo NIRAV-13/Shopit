@@ -2,16 +2,31 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import GiftcardArray from './GiftcardArray'
 import NavBar from '../NavBar/NavBar';
+import axios from 'axios';
 
 const Giftcard = () => {
-    const [data, setData] = useState(GiftcardArray)
+    const [data, setData] = useState([])
     const filterResult = (cat) => {
-        const result = GiftcardArray.filter((currentValue) => {
+        const result = data.filter((currentValue) => {
             return currentValue.category == cat;
         });
         setData(result)
     }
     
+    const fetchAllGiftcards = async () => {
+        let res = await axios({
+            method: "GET",
+            url: "http://localhost:8080/"
+        });
+
+        setData(res.data);
+        console.log(res.data);
+    };
+
+    useEffect(() => {
+        fetchAllGiftcards()
+    }, [])
+
     return (
         <div>
             <NavBar></NavBar>

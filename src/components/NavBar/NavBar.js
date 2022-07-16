@@ -41,7 +41,7 @@ export default class NavBar extends Component {
                                 <Nav.Link as={Link} to="/login">Cart</Nav.Link>
                                 <Nav.Link as={Link} to="/login">Login</Nav.Link>
                             </Nav>)}
-                        }
+                        
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>

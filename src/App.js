@@ -25,7 +25,6 @@ function App() {
 // import AddGiftcard from './components/ADDGiftcard/AddGiftcard';
 // import Table from './components/ADDGiftcard/Table';
 
-  
 
   return (
     <div className="App">

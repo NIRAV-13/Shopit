@@ -3,12 +3,13 @@ import { useParams } from 'react-router-dom'
 import NavBar from '../NavBar/NavBar';
 import GiftcardArray from './GiftcardArray';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const GiftcardDetails = () => {
     let navigate = useNavigate();
     const { id } = useParams();
 
-    const filtered = GiftcardArray.filter(gift => {
+    const filtered = data.filter(gift => {
         return gift.id == id;
     });
 
@@ -17,6 +18,21 @@ const GiftcardDetails = () => {
         navigate(path);
       }
     console.log(filtered);
+
+    const [data, setData] = useState([])
+    const fetchGiftcard = async () => {
+        let res = await axios({
+            method: "GET",
+            url: "http://localhost:8080/fetchGiftcardByGiftcardID/" + id
+        });
+
+        console.log(res.data);
+        setData(res.data)
+    };
+
+    useEffect(() => {
+        fetchGiftcard()
+    }, [])
 
     return (
         <div>
