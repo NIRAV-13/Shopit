@@ -7,12 +7,14 @@ import './ProductCss.css'
 import axios from 'axios';
 
 const ProductDetails = () => {
+    const [data, setData] = useState([])
+
     let navigate = useNavigate();
     const { id } = useParams();
 
-    const filtered = data.filter(prod => {
-        return prod.id == id;
-    });
+    // const filtered = data.filter(prod => {
+    //     return prod.id == id;
+    // });
 
     const [isHovering, setIsHovering] = useState(false);
 
@@ -29,10 +31,9 @@ const ProductDetails = () => {
         let path = `/wishlist`;
         navigate(path);
     }
-    console.log(filtered);
 
+    // console.log(filtered);
 
-    const [data, setData] = useState([])
     const fetchProduct = async () => {
         let res = await axios({
             method: "GET",
@@ -49,7 +50,7 @@ const ProductDetails = () => {
 
     return (
         <div>
-            {filtered.map((prod, idx) => {
+            {data.map((prod, idx) => {
                 return (
                     <>
                         <NavBar></NavBar>

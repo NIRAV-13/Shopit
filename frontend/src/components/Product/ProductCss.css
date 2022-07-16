@@ -19,22 +19,22 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    text-align: left;
+    /* text-align: left; */
     font-size: 20px;
     margin-top: -5px;
 }
 
-.cardtitle1 {
+.card-title1 {
     /* width: 300px; */
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    text-align: left;
-    margin-top: -5px;
+    /* text-align: left; */
+    margin-top: -2px;
 }
 
-.card-body1 .price {
-    text-align: left;
+.card-body1 .price1 {
+    /* text-align: left; */
     margin-top: -5px;
 }
 

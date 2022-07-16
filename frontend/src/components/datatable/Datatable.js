@@ -1,10 +1,6 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-<<<<<<< Updated upstream
-import { userColumns, userRows } from "../../datatablesource";
-=======
 import { userColumns } from "./datatablesource";
->>>>>>> Stashed changes
 import { Link } from "react-router-dom";
 import React from "react";
 import { useEffect, useState } from "react";
