@@ -29,7 +29,6 @@ async function addToCart(req, res) {
             return res.status(201).json({
                 "cart": new_cart_obj
             })
-
         } else {
             cart.product.push({
                 product_id: pid, product_name: pname, product_price: pprice, product_quantity: pquantity
@@ -47,17 +46,84 @@ async function addToCart(req, res) {
         })
     }
 }
+async function getCart(req,res)
+{
+    try{
+        const email = req.body.email
+        const cart = await CartModel.findOne({user_id:email})
+        console.log(cart);
+        if(cart){
+            return res.status(200).json({
+                "data":cart
+            })
+        }
+        return res.status(200).json({
+            "data":{
+                product:[],
+                coupon:""
+            }
+        }) 
+    }
+    catch(err){
+        console.log("this is error",err);
+        return res.status(500).json({
+            "message": "Something went wrong"
+        })
+    }
+}
+async function increasceQuantity(req,res){
+    try{
+        const email = req.body.email
+        const index = req.body.index;
+        var cart = await CartModel.findOneAndUpdate({ user_id:email});
+        cart.product[index].product_quantity += 1;
+        await cart.save()
+        return res.status(200).send({ cart: cart });
+    }catch(err){
+        console.log(err);
+        return res.status(500).json({
+            "message": "something went wrong"
+        })
 
-// async function getCart(req,res){
-//     try{
-        
+    }
+}
 
-//     }catch(err){
-//         console.log(err);
-//         return res.status(500).json({
-//             "message": "something went wrong"
-//         })
-//     }
-// }
+async function decreasceQuantity(req,res){
+    try{
+        const email = req.body.email
+        const index = req.body.index;
+        var cart = await CartModel.findOneAndUpdate({ user_id:email});
+        const product = cart.product[index]
+        product.product_quantity=product.product_quantity-1;
+        if(product.product_quantity<=0){
+            cart.product.splice(index, 1);
+        }
+        await cart.save()
+        return res.status(200).send({ cart: cart });
+    }catch(err){
+        console.log(err);
+        return res.status(500).json({
+            "message": "something went wrong"
+        })
 
-module.exports = { addToCart }
+    }
+}
+
+async function removeProduct(req,res){
+    try{
+        const email = req.body.email
+        const index = req.body.index;
+        var cart = await CartModel.findOneAndUpdate({ user_id:email});
+        cart.product.splice(index, 1);
+        await cart.save()
+        return res.status(200).send({ cart: cart });
+    }catch(err){
+        console.log(err);
+        return res.status(500).json({
+            "message": "something went wrong"
+        })
+
+    }
+}
+
+module.exports = { addToCart, getCart, decreasceQuantity, increasceQuantity,removeProduct}

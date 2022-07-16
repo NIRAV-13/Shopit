@@ -10,7 +10,6 @@ var CartSchema = new Schema({
             product_price: { type: Number, required: [true, 'Missing required value '] },
             product_quantity: Number
         }
-        
     ],
     coupon:String
 });
