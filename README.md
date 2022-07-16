@@ -36,7 +36,11 @@ To develop a project in React, first we have to download and install node js on 
 
 List of Required Softwares and Plugins:
 
+<<<<<<< HEAD
 1.  Node JS (environment)
+=======
+1.  flask 
+>>>>>>> 2261d93fa8bc4ce00fb2d9822bd32abbcda4ee7e
 
 2.  NPX plugins
 
@@ -66,7 +70,11 @@ List of Dependencies:
 
 - [Material UI](https://mui.com/) - For more enhanced User Interface
 
+<<<<<<< HEAD
 - [Nodejs](https://nodejs.org/en/docs/) - The backend web frameword used
+=======
+- [flask ](https://flask.palletsprojects.com/en/2.1.x/) - The backend web frameword used
+>>>>>>> 2261d93fa8bc4ce00fb2d9822bd32abbcda4ee7e
 
 - [heroku](https://dashboard.heroku.com/apps) - The deployment platform
 

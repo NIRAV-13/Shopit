@@ -1,0 +1,65 @@
+.card-border {
+    padding: 18px 30px;
+}
+
+
+.bg-image-login {
+    background-image: url("../Register/register.jpg");
+    height: 150%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover, contain;
+}
+
+.logo-image {
+    margin-left: 47%;
+    margin-right: 45%;
+    margin-bottom: 1%;
+    color: darkred;
+}
+
+.label-css-1 {
+    margin-top: 5%;
+}
+
+@media (min-width: 400px) {
+    .card-border {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+@media (min-width: 576px) {
+    .card-border {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
+
+@media (min-width: 768px) {
+    .card-border {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-border {
+        margin-left: 30%;
+        margin-right: 30%;
+        /*padding: 100px 40px;*/
+    }
+}
+
+@media (min-width: 1200px) {
+    .card-border {
+        margin-left: 30%;
+        margin-right: 30%;
+
+    }
+}
+.display-label{
+    float: left;
+}
+
+
