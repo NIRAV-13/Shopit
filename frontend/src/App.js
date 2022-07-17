@@ -15,6 +15,7 @@ import Giftcard from './components/Giftcards/Giftcard';
 import GiftcardDetails from './components/Giftcards/GiftcardDetails';
 import UserProfile from './components/UserProfile/Profile'
 import ForgotPassword from './components/ForgotPassword/ForgotPassword'
+import AddProduct from "./components/Product/AddProduct";
 
 // import AddGiftcard from './components/ADDGiftcard/AddGiftcard';
 // import Table from './components/ADDGiftcard/Table';
@@ -44,6 +45,7 @@ function App() {
           <Route path="/notifications" element={<Home />} />
           {/* <Route path="/giftcards_add/addgiftcard" element={<AddGiftcard />} />
           <Route path="/giftcardss_add/addgiftcard/table" element={<Table tableData={tableData} />} /> */}
+          <Route path='/products/addproduct' element={<AddProduct />} />
           <Route path="/profile" element={<Home />} />
           <Route path="/userprofile" element={<UserProfile />} />
           <Route path="/logout" element={<Home />} />
