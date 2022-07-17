@@ -1,9 +1,7 @@
-.card-border-register {
-    padding: 18px 30px;
-}
+/* AUTHOR: Tanvi Pruthi*/
 
 .bg-image {
-    background-image: url("../Register/register.jpg");
+    background-image: url("static/register.jpg");
     height: 150%;
     width: 100%;
     background-repeat: no-repeat;
@@ -23,35 +21,40 @@
 
 @media (min-width: 400px) {
     .card-border-register {
-        margin-left: 10px;
-        margin-right: 0px;
+        margin: auto;
     }
 }
 
 @media (min-width: 576px) {
     .card-border-register {
-        margin-left: 33px;
-        margin-right: 0px;
+        margin: auto;
     }
 }
 
 @media (min-width: 768px) {
     .card-border-register {
-        margin-left: 33%;
+        margin: auto;
+        padding-left: 30%;
+        padding-right: 30%;
+        padding-top: 12px;
     }
 }
 
 @media (min-width: 992px) {
     .card-border-register {
-        margin-left: 30%;
-        margin-right: 30%;
+        margin: auto;
+        padding-left: 30%;
+        padding-right: 30%;
+        padding-top: 12px;
             }
 }
 
 @media (min-width: 1200px) {
     .card-border-register {
-        margin-left: 30%;
-        margin-right: 30%;
+        margin: auto;
+        padding-left: 30%;
+        padding-right: 30%;
+        padding-top: 12px;
     }
 }
 

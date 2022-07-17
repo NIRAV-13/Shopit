@@ -1,3 +1,5 @@
+/* AUTHOR: Tanvi Pruthi*/
+
 import React from "react";
 import {useNavigate} from "react-router-dom";
 import useInput from "../../hooks/use-input";
@@ -14,11 +16,16 @@ import {
   InputGroup,
   InputGroupText,
 } from "reactstrap";
-import userIcon from "./usericon.png"
+
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
+import axios from "axios";
 
 let invalidLogin = false;
+
+// Email Validation Regex
+const regex =
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 const regexPassword =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
@@ -27,16 +34,29 @@ const simpleChangeHandler = (event) => {
   return event.target.value;
 };
 
+// create Base URL for backend communication
+const api = axios.create({
+    baseURL: "http://localhost:8080",
+});
+
 const ForgotPassword = (props) => {
   const history = useNavigate();
+
+   // Enter and Validate Email Id
+    const {
+        value: enteredEmail,
+        isValid: enteredEmailIsValid,
+        hasError: emailInputHasError,
+        valueChangeHandler: emailChangeHandler,
+        inputBlurHandler: emailBlurHandler
+    } = useInput((value) => regex.test(value) === true, simpleChangeHandler);
 
   const {
     value: enteredPassword,
     isValid: enteredPasswordIsValid,
     hasError: passwordInputHasError,
     valueChangeHandler: passwordChangeHandler,
-    inputBlurHandler: passwordBlurHandler,
-    reset: resetPasswordInput,
+    inputBlurHandler: passwordBlurHandler
   } = useInput((value) => regexPassword.test(value) === true, simpleChangeHandler); // Not using trim here as passwords may contain spaces in the beginning or end
 
   const {
@@ -44,24 +64,46 @@ const ForgotPassword = (props) => {
     isValid: enteredConfirmPasswordIsValid,
     hasError: confirmPasswordInputHasError,
     valueChangeHandler: confirmPasswordChangeHandler,
-    inputBlurHandler: confirmPasswordBlurHandler,
-    reset: resetConfirmPasswordInput,
+    inputBlurHandler: confirmPasswordBlurHandler
   } = useInput((value) => value.trim() === enteredPassword, simpleChangeHandler);
 
   let formIsValid = false;
 
-  if (enteredConfirmPasswordIsValid && enteredPasswordIsValid) {
+  if (enteredEmailIsValid && enteredConfirmPasswordIsValid && enteredPasswordIsValid) {
     formIsValid = true;
   }
 
   const formRegisterClickHandler = async () => {
-    history("/login");
-  };
+        api.post("/user/changePassword", {
+            email_id: enteredEmail,
+            user_password: enteredPassword.toString()
+        }).then(
+            res => {
+                if (res.status === 200 && res.data['message'] === "User doesn't exist. Please enter you registered email id.") {
+                    alert(res.data['message'])
+                    history("/forgotpassword")
+                    window.location.reload();
+                } else if (res.status === 200 && res.data['message'] === "Failed to update the password, please try again.") {
+                    alert(res.data['message'])
+                    history("/forgotpassword")
+                    window.location.reload();
+                } else if (res.status === 200 && res.data['message'] === "Password updated successfully, login now with the new password.") {
+                    alert(res.data['message'])
+                    history("/login")
+                    window.location.reload();
+                } else {
+                    alert(res.data['message'])
+                    history("/forgotpassword")
+                    window.location.reload();
+                }
+
+            });
+    };
 
   return (
       <div className="bg-image-login">
         <NavBar/>
-        <Col className="card-border">
+        <Col className="card-border-password">
           <Card>
             <CardHeader>
               <div className="text-center">
@@ -74,7 +116,7 @@ const ForgotPassword = (props) => {
                 <span className="btn-inner--icon">
                   <img
                       alt="..."
-                      src={userIcon}
+                      src={process.env.PUBLIC_URL + '/static/usericon.png'}
                       width={100} height={100}
                   />
                 </span>
@@ -87,6 +129,24 @@ const ForgotPassword = (props) => {
               </div>
             <label/>
               <Form role="form">
+                <label className="display-label"><b>Enter your registered email ID</b></label>
+                            <FormGroup>
+                                <InputGroup className="input-group-alternative mb-3">
+                                    <InputGroupText>
+                                        📧
+                                    </InputGroupText>
+                                    <Input
+                                        placeholder="Your valid email address"
+                                        id="email"
+                                        type="email"
+                                        autoComplete="new-email"
+                                        onChange={emailChangeHandler}
+                                        onBlur={emailBlurHandler}
+                                        value={enteredEmail}
+                                        className="form-control"
+                                    />
+                                </InputGroup>
+                            </FormGroup>
                 <label className="display-label"><b>Password</b></label>
                 <FormGroup>
                   <InputGroup className="input-group-alternative">
@@ -136,6 +196,9 @@ const ForgotPassword = (props) => {
                 {confirmPasswordInputHasError && (
                     <p className="text-danger">* Must contain alpha-numeric, special and minimum 8 characters.</p>
                 )}
+                {emailInputHasError && (
+                                <p className="text-danger">* Invalid Email ID.</p>
+                            )}
                 {passwordInputHasError && (
                     <p className="text-danger">* Must contain alpha-numeric, special and minimum 8 characters.</p>
                 )}
