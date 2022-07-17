@@ -1,11 +1,4 @@
-// const multer = require('multer')
-// const GiftcardModel = require('../models/Giftcards')
 const GiftcardModel = require('../models/Giftcards')
-// const imageModel = require('../models/Image')
-// const fs = require('fs')
-// const { promisify } = require('util')
-// const pipeline = promisify(require('stream').pipeline)
-
 const addGiftcard = async (req, res) => {
    
 
