@@ -17,7 +17,7 @@ export default class NavBar extends Component {
                             <Nav className="me-auto">
                                 <Nav.Link as={Link} to="/">Home</Nav.Link>
                             </Nav>
-                            <Form className="d-flex">
+                            {/* <Form className="d-flex">
                                 <input
                                     className="form-control me-2"
                                     type="search"
@@ -25,7 +25,7 @@ export default class NavBar extends Component {
                                     aria-label="Search"
                                 />
                                 <Button className="btn btn-light" type="submit">Search</Button>
-                            </Form>
+                            </Form> */}
                             {isLoggedIn ? (
                             <Nav className="ml-auto">
                                 <Nav.Link as={Link} to="/orders">Orders</Nav.Link>
