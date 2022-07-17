@@ -1,3 +1,5 @@
+/* AUTHOR: Tanvi Pruthi*/
+
 import React from "react";
 import {NavLink, useNavigate} from "react-router-dom";
 import useInput from "../../hooks/use-input";
@@ -15,9 +17,10 @@ import {
   InputGroupText,
   Row
 } from "reactstrap";
-import userIcon from "./usericon.png"
+
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
+import axios from "axios";
 
 let invalidLogin = false;
 // Email Validation Regex
@@ -29,6 +32,10 @@ const simpleChangeHandler = (event) => {
   return event.target.value;
 };
 
+const api = axios.create({
+  baseURL: "http://localhost:8080",
+});
+
 const Login = (props) => {
   const history = useNavigate();
 
@@ -38,8 +45,7 @@ const Login = (props) => {
     isValid: enteredEmailIsValid,
     hasError: emailInputHasError,
     valueChangeHandler: emailChangeHandler,
-    inputBlurHandler: emailBlurHandler,
-    reset: resetEmailInput,
+    inputBlurHandler: emailBlurHandler
   } = useInput((value) => regex.test(value) === true, simpleChangeHandler);
 
   // Password
@@ -48,8 +54,7 @@ const Login = (props) => {
     isValid: enteredPasswordIsValid,
     hasError: passwordInputHasError,
     valueChangeHandler: passwordChangeHandler,
-    inputBlurHandler: passwordBlurHandler,
-    reset: resetPasswordInput,
+    inputBlurHandler: passwordBlurHandler
   } = useInput((value) => value.length >= 8, simpleChangeHandler); // Not using trim here as passwords may contain spaces in the beginning or end
 
   let formIsValid = false;
@@ -59,14 +64,37 @@ const Login = (props) => {
   }
 
   const formRegisterClickHandler = async () => {
-    history("/dashboard")
-    localStorage.setItem("email",enteredEmail);
+    api.post("/user/verifyUser", {
+      email_id: enteredEmail,
+      user_password: enteredPassword.toString()
+    }).then(
+        res => {
+          if (res.status === 200 && res.data['message'] === "User logged in successfully!") {
+            alert(res.data['message'])
+            localStorage.setItem("email", enteredEmail);
+            history("/dashboard")
+            window.location.reload();
+          } else if (res.status === 200 && res.data['message'] === "User doesn't exist. Create an account.") {
+            alert(res.data['message'])
+            history("/register")
+            window.location.reload();
+          } else if (res.status === 200 && res.data['message'] === "User found, but email and password combination doesn't match.") {
+            alert(res.data['message'] + " Please login again!")
+            history("/login")
+            window.location.reload();
+          } else {
+            alert("something went wrong")
+            history("/login")
+            window.location.reload();
+          }
+
+        });
   };
 
   return (
       <div className="bg-image-login">
         <NavBar/>
-        <Col className="card-border">
+        <Col className="card-border-login">
           <Card>
             <CardHeader>
               <div className="text-center">
@@ -79,7 +107,7 @@ const Login = (props) => {
                 <span className="btn-inner--icon">
                   <img
                       alt="..."
-                      src={userIcon}
+                      src={process.env.PUBLIC_URL + '/static/usericon.png'}
                       width={100} height={100}
                   />
                 </span>

@@ -1,9 +1,4 @@
-/*.bg-image-profile {*/
-/*    background: white url("./profile.PNG") no-repeat;*/
-/*    background-size: contain, cover;*/
-/*    object-fit: cover;*/
-/*    background-position: center;*/
-/*}*/
+/* AUTHOR: Tanvi Pruthi*/
 
 .col-md-4 {
     margin-bottom: 30px;
@@ -14,11 +9,6 @@
     cursor: pointer;
     margin-top: 10%;
     margin-bottom: 35%;
-}
-
-.row {
-    /*margin: auto;*/
-    /*position: center;*/
 }
 
 .col-md-4 {

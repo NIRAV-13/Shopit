@@ -12,19 +12,19 @@ const Product = () => {
         setData(result)
     }
 
-    const fetchAllProducts = async () => {
-        let res = await axios({
-            method: "GET",
-            url: "http://localhost:8080/"
-        });
-
-        setData(res.data);
-        console.log(res.data);
-    };
-
-    useEffect(() => {
-        fetchAllProducts()
-    }, [])
+    // const fetchAllProducts = async () => {
+    //     let res = await axios({
+    //         method: "GET",
+    //         url: "http://localhost:8080/"
+    //     });
+    //
+    //     setData(res.data);
+    //     console.log(res.data);
+    // };
+    //
+    // useEffect(() => {
+    //     fetchAllProducts()
+    // }, [])
 
     return (
         <div>
