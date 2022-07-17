@@ -24,9 +24,29 @@ const Giftcard = () => {
     useEffect(() => {
         fetchAllGiftcards()
     }, [])
+
+    const [search, setSearch] = useState("");
+
+     useEffect(() => {
+       const result = data.filter((giftcard) => {
+         return (
+           giftcard.giftcardName.toLowerCase().match(search.toLowerCase()) ||
+           giftcard.giftcardBrand.toLowerCase().match(search.toLowerCase()) 
+         );
+       });
+       setData(result);
+     }, [search]);
+
     return (
         <div>
             <NavBar></NavBar>
+            <input
+                type='search'
+                className='search'
+                placeholder='Search Giftcards...'
+                onChange={event => setSearch(event.target.value)}
+                style={{marginTop:'30px', width: '40%', background:"#F2F1F9", border:"none", padding:"0.5rem"}}
+            />
             <div className='container-fluid mx-2'>
                 <div className='row mt-5 mx-2'>
                     <div className='col-md-3'>
@@ -48,6 +68,9 @@ const Giftcard = () => {
                                                 <img src={val.giftcardImage} className="card-img-top" alt="..." />
                                                 <div className="card-body">
                                                     <p className="card-title text-muted">{val.giftcardName}</p>
+                                                    <p className="cardbrand mt-1"
+                                                        style={{ overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', fontSize: '20px', marginTop: '-5px' }}
+                                                    ><strong>{val.giftcardBrand}</strong></p>
                                                     <p><strong>${val.giftcardPrice}</strong></p>
                                                     <Link as={Link} to={`giftcard/${val._id}`}>Details</Link>
                                                 </div>
