@@ -12,7 +12,7 @@ const addProduct = async (req, res) => {
         productDescription: req.body.productDescription,
         productImage: req.body.productImage,
         createdDate: createdDate,
-        // size: req.body.size,
+        size: req.body.size,
     })
 
     await product.save();
@@ -24,15 +24,14 @@ const fetchAllProducts = async (req, res) => {
         if (err) {
             res.send(err);
         }
-        console.log(result)
+        // console.log("products:",result)
         res.json(result);
     });
 };
 
 const fetchProductByProductID = async (req, res) => {
     const _id  = req.params.id;
-    console.log(req.params.id )
-
+    
     ProductModel.find({_id}, function (err, result) {
         if (err) {
             res.send(err);

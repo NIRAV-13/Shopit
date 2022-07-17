@@ -8,8 +8,7 @@ const productSchema = new mongoose.Schema({
     productDescription: String,
     productImage: String,
     createdDate: Date,
-    // size: String,
-    // updatedDate: Date, 
+    size: String,
 })
 
 const products = mongoose.model("products", productSchema);

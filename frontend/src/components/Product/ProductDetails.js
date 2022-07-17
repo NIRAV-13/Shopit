@@ -12,10 +12,6 @@ const ProductDetails = () => {
   let navigate = useNavigate();
   const { id } = useParams();
 
-  // const filtered = data.filter(prod => {
-  //     return prod.id == id;
-  // });
-
   const [isHovering, setIsHovering] = useState(false);
 
   const handleMouseEnter = () => {
@@ -31,15 +27,11 @@ const ProductDetails = () => {
     navigate(path);
   };
 
-  // console.log(filtered);
-
   const fetchProduct = async () => {
     let res = await axios({
       method: "GET",
       url: "http://localhost:8080/fetchProductByProductID/" + id,
     });
-
-    console.log(res.data);
     setData(res.data);
   };
 
@@ -53,9 +45,8 @@ const ProductDetails = () => {
         return (
           <>
             <NavBar></NavBar>
-            <div className="details" key={idx}>
+            <div className="productDetails" key={idx}>
               <div className="big-img">
-                {/* <img src={"http://localhost:3000/" + prod.img} className="img-fluid" alt="..." />  */}
                 <img src={prod.productImage} className="img-fluid" alt="..." />
               </div>
 
@@ -66,6 +57,7 @@ const ProductDetails = () => {
                   <span>${prod.productPrice}</span>
                 </div>
                 <p>{prod.productDescription}</p>
+                {(prod.productCategory === 'Men'|| prod.productCategory === 'Women' || prod.productCategory === 'Kids' )? <p>Size <strong>{prod.size}</strong></p>: ''}
                 <div className="buttonRow">
                   <button
                     className="cart"
@@ -79,7 +71,6 @@ const ProductDetails = () => {
                     {" "}
                     <span class="bi bi-handbag-fill"></span> Add to cart
                   </button>
-
                   {/* <button className="wishlist"> <span class='bi bi-suit-heart'></span> Add to cart</button> */}
                 </div>
               </div>

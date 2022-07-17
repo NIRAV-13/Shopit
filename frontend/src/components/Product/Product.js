@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import axios from "axios";
 // import { Navbar, Container, Nav } from 'react-bootstrap'
-import ProductArray from './ProductArray'
-import axios from 'axios';
 // import './ProductCss.css'
-// import SearchBox from './SearchBox'
 
 const Product = () => {
     const [data, setData] = useState([])
     const [dbData, setDbData] = useState([])
 
     const filterResult = (cat) => {
-        debugger;
+        // debugger; 
+        console.log(data)
         const result = dbData.filter((val) => {
             return val.productCategory === cat;
         });
@@ -19,12 +18,11 @@ const Product = () => {
     }
 
     const fetchAllProducts = async () => {
-        debugger;
+        // debugger;
         let res = await axios({
             method: "GET",
-            url: "http://localhost:8080/"
+            url: "http://localhost:8080/fetchProducts/"
         });
-
         setData(res.data);
         setDbData(res.data)
     };
@@ -33,8 +31,31 @@ const Product = () => {
         fetchAllProducts()
     }, [])
 
+    const [search, setSearch] = useState("");
+
+     useEffect(() => {
+       const result = dbData.filter((product) => {
+        //  console.log(product.productName);
+         return (
+           product.productName.toLowerCase().match(search.toLowerCase()) ||
+           product.productBrand.toLowerCase().match(search.toLowerCase()) 
+         );
+       });
+       setData(result);
+     }, [search]);
+
+    
     return (
         <div>
+        
+            <input
+                type='search'
+                className='search'
+                placeholder='Search products...'
+                onChange={event => setSearch(event.target.value)}
+                style={{marginTop:'30px', width: '40%', background:"#F2F1F9", border:"none", padding:"0.5rem"}}
+            />
+
             <div className='container-fluid mx-2'>
                 <div className='row mt-5 mx-2'>
                     <div className='col-md-3'>
@@ -51,24 +72,20 @@ const Product = () => {
                     <div className='col-md-9'>
                         <div className='row'>
                             {data.map((values) => {
-                                const { id, title, price, img } = values
                                 return (
                                     <>
                                         <div className='col-md-4 mb-4' key={values._id} style={{ margin: 0 }}>
                                             <div className="card" style={{ minHeight: '100%' }}>
                                                 <Link className='link' as={Link} to={`product/${values._id}`}>
                                                     <img src={values.productImage} className="card-img-top1"
-                                                        style={{ width: '100%', height: '30vw', objectFit: 'cover' }} alt="..." />
+                                                        style={{ width: '100%', height: '30vw', objectFit: 'contain' }} alt="..." />
                                                 </Link>
-                                                {/* <img src={values.productImage} className="card-img-top1" alt="..." /> */}
                                                 <div className="card-body1">
                                                     <p className="cardbrand1 mt-1"
                                                         style={{ overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', fontSize: '20px', marginTop: '-5px' }}
                                                     ><strong>{values.productBrand}</strong></p>
                                                     <p className="card-title1 text-muted">{values.productName}</p>
-                                                    {/* <p><strong>${values.productPrice}</strong></p> */}
                                                     <p className="price1"><strong>${values.productPrice}</strong></p>
-                                                    {/* <Link as={Link} to={`product/${values._id}`}>Details</Link> */}
                                                     <div className="cardlink1" >
                                                         <Link className='link' as={Link} to={`product/${values._id}`}>Details</Link>
                                                     </div>
