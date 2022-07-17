@@ -35,6 +35,7 @@ const GiftcardDetails = () => {
                                 <div className="col-md-6">
                                     <div className="card-body" key={gift._id}>
                                         <h5 className="text-start fs-1 fw-bold">{gift.giftcardName}</h5>
+                                        <h5 className="text-start fs-1 fw-bold">{gift.giftcardBrand}</h5>
                                         <p className="text-start mt-5">{gift.giftcardDescription}</p>
                                         <p className="text-start fw-bold">${gift.giftcardPrice}</p>
                                         <p className="text-start"><small className="text-muted">In stock</small></p>
