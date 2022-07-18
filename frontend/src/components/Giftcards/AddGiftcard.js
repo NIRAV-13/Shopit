@@ -1,17 +1,10 @@
 
 import React, { Component, useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
-import DataTable from 'react-data-table-component'
-import GiftcardArray from '../Giftcards/GiftcardArray'
-import './AddGiftcard.css'
-import { Link, useHistory, useParams } from 'react-router-dom';
-import Modal from 'react-modal'
+// import './AddGiftcard.css'
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-import FileBase64 from 'react-file-base64';
-import constants from "../../constants/constants"
 
-const baseURL = constants.API_BASE_URL;
 
 const AddGiftcard = () => {
 
@@ -19,106 +12,99 @@ const AddGiftcard = () => {
     const [giftcardBrand, setGiftcardBrand] = useState('')
     const [giftcardPrice, setGiftcardPrice] = useState('')
     const [giftcardDesc, setGiftcardDesc] = useState('')
-    const [giftcardImg, setGiftcardImg] = useState('')
     const [giftcardCategory, setGiftcardCategory] = useState('')
     const [error, setError] = useState('')
     const [url, setUrl] = useState('')
     const [image, setImage] = useState('')
 
-    const types = ['image/png', 'image/jpeg']
+    const types = ['image/png', 'image/jpeg', 'image/jpg'];
 
     const giftcardImgHandler = (e) => {
-        console.log(e.target.files[0])
-        let selectedFile = e.target.files[0];
-        setGiftcardImg(selectedFile)
-        if (selectedFile && types.includes(selectedFile.type)) {
-            setGiftcardImg(selectedFile);
-            setError('');
-        }
-        else {
-            setGiftcardImg(null);
-            setError('Please select a png or jpeg image!');
-        }
-
-        setFileToBase(selectedFile)
-    }
-
-    const setFileToBase = (file) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file)
-        reader.onload = () => {
-            setGiftcardImg(reader.result)
-        }
-    }
-
-    const handleFile = (e) => {
         setImage(e.target.files[0])
-    }
+        console.log(error)
+        if (e.target.files[0] && types.includes(e.target.files[0].type)) {
+          setError("");
+        } else {
+          setError("Please select a png or jpeg image!");
+        }
+  };
 
-    // const postDetails = () => {
-    //     const data = new FormData()
-    //     data.append("file", image)
-    //     data.append("upload_preset", "shopit")
-    //     // data.append("cloud_name", "dlgnkj2h8")
-    //     fetch('https://api.cloudinary.com/v1_1/dlgnkj2h8/image/upload',
-    //         {
-    //             method: 'POST',
-    //             body: data
-    //         }
-    //     ).then(res => res.json())
-    //         .then(data => { setUrl(data.url.secure_url); console.log(data);  })
-    //         .catch(err => { console.log(err) })
+    // const setFileToBase = (file) => {
+    //     const reader = new FileReader();
+    //     reader.readAsDataURL(file)
+    //     reader.onload = () => {
+    //         setGiftcardImg(reader.result)
+    //     }
+    // }
+
+    // const handleFile = (e) => {
+    //     setImage(e.target.files[0])
     // }
 
     const add_Giftcard = (e) => {
-        e.preventDefault()
-        console.log("first:",url)
-        postDetails()
-        console.log("second:", url)
+        e.preventDefault();
+
+         const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "shopit");
+    data.append("cloud_name", "dlgnkj2h8");
+
+    fetch("https://api.cloudinary.com/v1_1/dlgnkj2h8/image/upload", {
+      method: "POST",
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => {
         const newGiftcard = {
             giftcardName: giftcardName,
             giftcardBrand: giftcardBrand,
             giftcardCategory: giftcardCategory,
             giftcardPrice: giftcardPrice,
             giftcardDescription: giftcardDesc,
-            giftcardImage: url,
-        }
+            giftcardImage: data.secure_url,
+        };
 
-        console.log(newGiftcard)
 
-        axios.post(baseURL + '/addgiftcard', newGiftcard)
+        axios.post('http://localhost:8080/addgiftcard', newGiftcard)
+        .then((res) => console.log(res))
+          .catch((error) => console.log(error));
+
         setGiftcardName('')
         setGiftcardBrand('')
         setGiftcardDesc('')
         setGiftcardPrice('')
         setGiftcardCategory('')
-        setGiftcardImg('')
-        setUrl('')
+    
 
-    }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 
 
     return (
 
-        <div className='container'>
+        <div className='text-center text-md-right'>
             <h2>Add Giftcards</h2>
            
-            <Form autoComplete='off' onSubmit={add_Giftcard}>
+            <Form autoComplete='off' onSubmit={add_Giftcard} class="form-inline">
                 <Form.Group className="mb-3">
-                    <Form.Label>Title</Form.Label>
+                    {/* <Form.Label className="giftcardFormLabel">Giftcard Name</Form.Label> */}
                     <Form.Control
-                        // className='w-50'
+                        className='col-md-3'
                         type="text"
-                        placeholder='Title'
+                        placeholder='Name'
                         required
                         value={giftcardName}
                         onChange={(e) => setGiftcardName(e.target.value)}
                     />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Brand</Form.Label>
+                    {/* <Form.Label className="giftcardFormLabel"> Giftcard Brand</Form.Label> */}
                     <Form.Control
-                        className='col-lg-4 col-md-4 col-sm-4 container justify-content-center'
+                        className='col-md-3'
                         type="text"
                         placeholder='Brand'
                         required
@@ -127,8 +113,9 @@ const AddGiftcard = () => {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3" >
-                    <Form.Label>Category</Form.Label>
-                    <Form.Select required value={giftcardCategory} onChange={(e) => setGiftcardCategory(e.target.value)}>
+                    {/* <Form.Label className="giftcardFormLabel"> Giftcard Category</Form.Label> */}
+                    <div class="col-sm-3">
+                        <Form.Select class="form-control form-control-inline" required value={giftcardCategory} onChange={(e) => setGiftcardCategory(e.target.value)}>
                         <option value="" hidden></option>
                         <option value="Shopping">Shopping</option>
                         <option value="Movie">Movie</option>
@@ -136,10 +123,13 @@ const AddGiftcard = () => {
                         <option value="Medicines">Medicines</option>
                         <option value="Food">Food</option>
                     </Form.Select>
+                    </div>
+                    
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Price</Form.Label>
+                    {/* <Form.Label className="giftcardFormLabel">Giftcard Price</Form.Label> */}
                     <Form.Control
+                    className='col-md-3'
                         type="number"
                         placeholder='Price'
                         required
@@ -151,8 +141,9 @@ const AddGiftcard = () => {
                     className="mb-3"
                     controlId="exampleForm.ControlTextarea1"
                 >
-                    <Form.Label>Description</Form.Label>
+                    {/* <Form.Label className="giftcardFormLabel">Giftcard Description</Form.Label> */}
                     <Form.Control
+                    className='col-md-3'
                         as="textarea"
                         placeholder='Description'
                         rows={2}
@@ -161,21 +152,22 @@ const AddGiftcard = () => {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Image</Form.Label>
+                    {/* <Form.Label className="giftcardFormLabel">Giftcard Image</Form.Label> */}
                     <Form.Control
+                    className='col-md-3'
                         type="file"
                         placeholder='Image'
                         name='image'
                         required
                         onChange={giftcardImgHandler}
-                    
+                        accept=".jpeg, .png, .jpg"
                     />
                    
                 </Form.Group>
               
-                <Button type='submit' className='btn btn-primary btn-md mybtn'>Add Gift Card</Button>
+                <Button type='submit' className='align-self-start mr-auto'  disables={error}>Add Gift Card</Button>
             </Form>
-            {error && <span>{error}</span>}
+            {error && <span className='text-danger'>{error}</span>}
 
 
         </div>
