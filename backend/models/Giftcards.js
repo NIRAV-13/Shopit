@@ -1,3 +1,5 @@
+// Author : [Tejaswini Rallapali](sr805848@dal.ca) 
+
 const mongoose = require('mongoose')
 
 const giftcardSchema = new mongoose.Schema({

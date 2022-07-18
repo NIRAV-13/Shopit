@@ -1,3 +1,5 @@
+// Author : [Tejaswini Rallapali](sr805848@dal.ca) 
+
 const GiftcardModel = require('../models/Giftcards')
 const addGiftcard = async (req, res) => {
    

@@ -1,3 +1,5 @@
+// Author : [Tejaswini Rallapali](sr805848@dal.ca) 
+
 import React, { Component } from 'react'
 
 const SearchBox = (props) => {

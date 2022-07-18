@@ -1,3 +1,5 @@
+// Author : [Tejaswini Rallapali](sr805848@dal.ca) 
+
 const GiftcardArray = [
     {
         img: "./static/gc1.png",
