@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 import axios from "axios";
 // import { Navbar, Container, Nav } from 'react-bootstrap'
 // import './ProductCss.css'
+import constants from "../../constants/constants"
 
+const baseURL = constants.API_BASE_URL;
 const Product = () => {
     const [data, setData] = useState([])
     const [dbData, setDbData] = useState([])
@@ -21,7 +23,7 @@ const Product = () => {
         // debugger;
         let res = await axios({
             method: "GET",
-            url: "http://localhost:8080/fetchProducts/"
+            url: baseURL + "/fetchProducts/"
         });
         setData(res.data);
         setDbData(res.data)

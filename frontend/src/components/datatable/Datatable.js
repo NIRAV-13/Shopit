@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import constants from "../../constants/constants"
 
+const baseURL = constants.API_BASE_URL;
 const Datatable = () => {
     const [data, setData] = useState({});
 
     const [listItems, setListItems] = useState([]);
-    const getAPI = "http://localhost:5003/admin";
+    const getAPI = baseURL + "/admin";
 
     useEffect(() => {
         console.log("in effect");
@@ -22,7 +24,7 @@ const Datatable = () => {
     }, []);
 
     const handleDelete = (id) => {
-        const getAPI_delete = "http://localhost:5003/delete";
+        const getAPI_delete = baseURL+"/delete";
         axios.post(getAPI_delete, {id}).then((res,req) => {
             console.log(req.body);
         })

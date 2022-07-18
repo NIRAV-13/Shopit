@@ -6,9 +6,9 @@ import NavBar from '../NavBar/NavBar';
 import axios from "axios";
 import {orderJson,cancelledOrders,pendingOrders} from '../orders/ordersArray'
 import Search from './search';
-
+import constants from "../../constants/constants"
 const api = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: `${constants.API_BASE_URL}`,
   });
 const Orders = () => {
     const [order, setOrder] = useState([]);
@@ -19,7 +19,11 @@ const Orders = () => {
         const orders = response.data
         setOrder(response.data);
       };
-      data();
+    useEffect(()=>{
+        data();
+    });
+    
+
 
     return (
         <>

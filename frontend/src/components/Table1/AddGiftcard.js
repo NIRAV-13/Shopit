@@ -9,7 +9,9 @@ import Modal from 'react-modal'
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import FileBase64 from 'react-file-base64';
+import constants from "../../constants/constants"
 
+const baseURL = constants.API_BASE_URL;
 
 const AddGiftcard = () => {
 
@@ -84,7 +86,7 @@ const AddGiftcard = () => {
 
         console.log(newGiftcard)
 
-        axios.post('http://localhost:3000/addgiftcard', newGiftcard)
+        axios.post(baseURL + '/addgiftcard', newGiftcard)
         setGiftcardName('')
         setGiftcardBrand('')
         setGiftcardDesc('')

@@ -22,7 +22,10 @@ import useInput from "../../hooks/use-input";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import axios from "axios";
-
+import constants from "../../constants/constants"
+const api = axios.create({
+    baseURL: `${constants.API_BASE_URL}`,
+  });
 // Email Validation Regex
 const regex =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -35,12 +38,6 @@ const regexPassword =
 const simpleChangeHandler = (event) => {
     return event.target.value;
 };
-
-// create Base URL for backend communication
-const api = axios.create({
-    baseURL: "http://localhost:8080",
-});
-
 const Register = (props) => {
     const history = useNavigate();
 

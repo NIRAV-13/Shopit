@@ -1,12 +1,12 @@
 import {  Container, Card, Col, Row, Image } from 'react-bootstrap';
 
 const OrderCard = ({orderJson}) => {
-    if({orderJson} !== [])
-        console.log(orderJson)
+    // if({orderJson} !== [])
+    //     console.log(orderJson)
     return (
         <>
             {orderJson.map((order, idx) => (
-                <Container className="p-3">
+                <Container key = {order.id} className="p-3">
                     <Card>
                         <Card.Header>
                             <Row xs={1} md={2} className="g-4">
@@ -27,7 +27,7 @@ const OrderCard = ({orderJson}) => {
                             <h2 className="text-bold">{order.Delivery}</h2>
                             <Row>
                                 <Col xs={1} md={2}>
-                                    <Image src={require(`${order.Image}`)} />
+                                    <Image src={order.Image}/>
                                 </Col>
                                 <Col xs={3} md={7}>
                                     <a href='#'><div>{order.Title}</div></a>

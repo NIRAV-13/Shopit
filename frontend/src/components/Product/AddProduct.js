@@ -3,6 +3,9 @@ import { Button } from "react-bootstrap";
 import "./AddProduct_css.css";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
+import constants from "../../constants/constants"
+
+const baseURL = constants.API_BASE_URL;
 
 const AddProduct = () => {
   const [productName, setProductName] = useState("");
@@ -51,7 +54,7 @@ const AddProduct = () => {
         };
 
         axios
-          .post("http://localhost:8080/addproduct", newProduct)
+          .post(baseURL + "/addproduct", newProduct)
           .then((res) => console.log(res))
           .catch((error) => console.log(error));
 

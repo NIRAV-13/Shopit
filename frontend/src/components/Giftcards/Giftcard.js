@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import NavBar from '../NavBar/NavBar';
 import axios from 'axios';
+import constants from "../../constants/constants"
+
+const baseURL = constants.API_BASE_URL;
+
 const Giftcard = () => {
     const [data, setData] = useState([])
     const [giftcardData, setGiftcardData] = useState([]);
@@ -15,7 +19,7 @@ const Giftcard = () => {
     const fetchAllGiftcards = async () => {
         let res = await axios({
             method: "GET",
-            url: "http://localhost:8080/fetchGiftCards"
+            url: baseURL+"/fetchGiftCards"
         });
         setData(res.data);
         console.log(res.data);

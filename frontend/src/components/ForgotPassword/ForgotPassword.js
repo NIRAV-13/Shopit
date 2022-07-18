@@ -20,7 +20,10 @@ import {
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import axios from "axios";
-
+import constants from "../../constants/constants"
+const api = axios.create({
+    baseURL: `${constants.API_BASE_URL}`,
+  });
 let invalidLogin = false;
 
 // Email Validation Regex
@@ -34,10 +37,6 @@ const simpleChangeHandler = (event) => {
   return event.target.value;
 };
 
-// create Base URL for backend communication
-const api = axios.create({
-    baseURL: "http://localhost:8080",
-});
 
 const ForgotPassword = (props) => {
   const history = useNavigate();

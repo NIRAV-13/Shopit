@@ -5,6 +5,9 @@ import ProductArray from "./ProductArray";
 import { useNavigate } from "react-router-dom";
 import "./ProductCss.css";
 import axios from "axios";
+import constants from "../../constants/constants"
+
+const baseURL = constants.API_BASE_URL;
 
 const ProductDetails = () => {
   const [data, setData] = useState([]);
@@ -30,7 +33,7 @@ const ProductDetails = () => {
   const fetchProduct = async () => {
     let res = await axios({
       method: "GET",
-      url: "http://localhost:8080/fetchProductByProductID/" + id,
+      url: baseURL + "/fetchProductByProductID/" + id,
     });
     setData(res.data);
   };
@@ -57,7 +60,7 @@ const ProductDetails = () => {
                   <span>${prod.productPrice}</span>
                 </div>
                 <p>{prod.productDescription}</p>
-                {(prod.productCategory === 'Men'|| prod.productCategory === 'Women' || prod.productCategory === 'Kids' )? <p>Size <strong>{prod.size}</strong></p>: ''}
+                {(prod.productCategory === 'Men' || prod.productCategory === 'Women' || prod.productCategory === 'Kids') ? <p>Size <strong>{prod.size}</strong></p> : ''}
                 <div className="buttonRow">
                   <button
                     className="cart"

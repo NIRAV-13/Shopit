@@ -22,10 +22,10 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import NavBar from "../NavBar/NavBar";
 import axios from "axios";
-
+import constants from "../../constants/constants"
 const api = axios.create({
-  baseURL: "http://localhost:8080",
-});
+    baseURL: `${constants.API_BASE_URL}`,
+  });
 
 const Cart = () => {
   const [items, setItem] = useState([]);

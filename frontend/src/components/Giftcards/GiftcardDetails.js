@@ -4,6 +4,9 @@ import NavBar from '../NavBar/NavBar';
 import GiftcardArray from './GiftcardArray';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import constants from "../../constants/constants"
+
+const baseURL = constants.API_BASE_URL;
 const GiftcardDetails = () => {
     let navigate = useNavigate();
     const { id } = useParams();
@@ -11,7 +14,7 @@ const GiftcardDetails = () => {
     const fetchGiftcard = async () => {
         let res = await axios({
             method: "GET",
-            url: "http://localhost:8080/fetchGiftcardByGiftcardID/" + id
+            url: baseURL+"/fetchGiftcardByGiftcardID/" + id
         });
         debugger;
         console.log(res.data);
@@ -29,7 +32,6 @@ const GiftcardDetails = () => {
                         <div className="card1 mb-3 mt-5" >
                             <div className="row g-0">
                                 <div className="col-md-6">
-                                    {/* <img src={"http://localhost:3000/" + gift.img} className="img-fluid" alt="..." /> */}
                                     <img src={gift.giftcardImage} className="img-fluid" alt="..." />
                                 </div>
                                 <div className="col-md-6">
