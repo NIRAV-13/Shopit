@@ -11,6 +11,7 @@ const baseURL = constants.API_BASE_URL;
 
 const ProductDetails = () => {
   const [data, setData] = useState([]);
+  const isLoggedIn = localStorage.getItem("email");
 
   let navigate = useNavigate();
   const { id } = useParams();
@@ -38,8 +39,32 @@ const ProductDetails = () => {
     setData(res.data);
   };
 
+  const add_cart = async () => {
+    let url =  baseURL + "/cart/add_cart/";
+    console.log(localStorage.getItem("email"));
+    localStorage.getItem("email")
+    console.log(data[0])
+    let res = await axios
+      .post(url, {
+        user_id: localStorage.getItem("email"),
+        product: {
+            _id: id,
+            productName: data[0].productName,
+            productPrice: data[0].productPrice,
+          },
+  
+      })
+      .then((res) => console.log(res.data))
+      .catch((error) => console.log(error));
+  };
+
+  const handleCart = () => {
+    add_cart();
+  }
+
   useEffect(() => {
     fetchProduct();
+    
   }, []);
 
   return (
@@ -61,9 +86,12 @@ const ProductDetails = () => {
                 </div>
                 <p>{prod.productDescription}</p>
                 {(prod.productCategory === 'Men' || prod.productCategory === 'Women' || prod.productCategory === 'Kids') ? <p>Size <strong>{prod.size}</strong></p> : ''}
+                
+                {isLoggedIn ? (
                 <div className="buttonRow">
                   <button
                     className="cart"
+                    onClick={handleCart}
                     style={{
                       backgroundColor: isHovering ? "pink" : "",
                       color: isHovering ? "white" : "",
@@ -73,9 +101,15 @@ const ProductDetails = () => {
                   >
                     {" "}
                     <span class="bi bi-handbag-fill"></span> Add to cart
-                  </button>
+                  </button> 
+      
                   {/* <button className="wishlist"> <span class='bi bi-suit-heart'></span> Add to cart</button> */}
+                  
                 </div>
+                 ):(
+                      <span className="text-danger">Log in to add to cart</span>
+                   )}
+
               </div>
             </div>
           </>

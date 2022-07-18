@@ -62,14 +62,14 @@ const Product = () => {
                 <div className='row mt-5 mx-2'>
                     <div className='col-md-3'>
                         <h1 className='text-center secondary pb-4 pt-1'>Category</h1>
-                        <button className='btn btn-warning w-100 mb-4' onClick={() => filterResult('Men')}>Men</button>
-                        <button className='btn btn-warning w-100 mb-4' onClick={() => filterResult('Women')}>Women</button>
-                        <button className='btn btn-warning w-100 mb-4' onClick={() => filterResult('Kids')}>Kids</button>
-                        <button className='btn btn-warning w-100 mb-4' onClick={() => filterResult('Home & Kitchen')}>Home & Kitchen</button>
-                        <button className='btn btn-warning w-100 mb-4' onClick={() => filterResult('Electronics')}>Electronics</button>
-                        <button className='btn btn-warning w-100 mb-4' onClick={() => filterResult('Health & Personal Care')}>Health & Personal Care</button>
-                        <button className='btn btn-warning w-100 mb-4' onClick={() => filterResult('Beauty')}>Beauty</button>
-                        <button className='btn btn-warning w-100 mb-4' onClick={() => setData(dbData)}>All</button>
+                        <button className='btn btn-warning w-75 mb-4' onClick={() => setData(dbData)}>All</button>
+                        <button className='btn btn-warning w-75 mb-4' onClick={() => filterResult('Men')}>Men</button>
+                        <button className='btn btn-warning w-75 mb-4' onClick={() => filterResult('Women')}>Women</button>
+                        <button className='btn btn-warning w-75 mb-4' onClick={() => filterResult('Kids')}>Kids</button>
+                        <button className='btn btn-warning w-75 mb-4' onClick={() => filterResult('Home & Kitchen')}>Home & Kitchen</button>
+                        <button className='btn btn-warning w-75 mb-4' onClick={() => filterResult('Electronics')}>Electronics</button>
+                        <button className='btn btn-warning w-75 mb-4' onClick={() => filterResult('Health & Personal Care')}>Health & Personal Care</button>
+                        <button className='btn btn-warning w-75 mb-4' onClick={() => filterResult('Beauty')}>Beauty</button>
                     </div>
                     <div className='col-md-9'>
                         <div className='row'>
@@ -78,7 +78,7 @@ const Product = () => {
                                     <>
                                         <div className='col-md-4 mb-4' key={values._id} style={{ margin: 0 }}>
                                             <div className="card" style={{ minHeight: '100%' }}>
-                                                <Link className='link' as={Link} to={`product/${values._id}`}>
+                                                <Link className='link' as={Link} to={`/product/${values._id}`}>
                                                     <img src={values.productImage} className="card-img-top1"
                                                         style={{ width: '100%', height: '30vw', objectFit: 'contain' }} alt="..." />
                                                 </Link>
@@ -89,7 +89,7 @@ const Product = () => {
                                                     <p className="card-title1 text-muted">{values.productName}</p>
                                                     <p className="price1"><strong>${values.productPrice}</strong></p>
                                                     <div className="cardlink1" >
-                                                        <Link className='link' as={Link} to={`product/${values._id}`}>Details</Link>
+                                                        <Link className='link' as={Link} to={`/product/${values._id}`}>Details</Link>
                                                     </div>
                                                 </div>
                                             </div>
