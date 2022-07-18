@@ -1,3 +1,4 @@
+/* Author: Lavita Pereira */
 const ProductModel = require('../models/Products')
 
 const addProduct = async (req, res) => {

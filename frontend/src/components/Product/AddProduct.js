@@ -1,3 +1,4 @@
+/* Author: Lavita Pereira */
 import React, { Component, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import "./AddProduct_css.css";
@@ -12,7 +13,6 @@ const AddProduct = () => {
   const [productBrand, setProductBrand] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [productDesc, setProductDesc] = useState("");
-  // const [productImg, setProductImg] = useState("");
   const [productCategory, setProductCategory] = useState("");
   const [error, setError] = useState("");
   const [image, setImage] = useState("");
@@ -63,7 +63,6 @@ const AddProduct = () => {
         setProductDesc("");
         setProductPrice("");
         setProductCategory("");
-        // setProductImg("");
         setSize("");
 
         // this.props.history.push("/products/addproduct");
@@ -77,11 +76,11 @@ const AddProduct = () => {
 
   return (
     <div className="container">
-      <h2>Add Products</h2>
+      <h2 style={{color:'darkorange'}}>Add Product</h2>
     
-      <Form autoComplete="off" onSubmit={add_Product}>
+      <Form autoComplete="off" onSubmit={add_Product} style={{width: '50%', margin: 'auto'}}>
         <Form.Group className="mb-3">
-          <Form.Label className="productFormLabel">Product Name</Form.Label>
+          <Form.Label className="productFormLabel" style={{color:'darkblue'}}>Product Name</Form.Label>
           <Form.Control
             type="text"
             required
@@ -90,7 +89,7 @@ const AddProduct = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label className="productFormLabel">Product Brand</Form.Label>
+          <Form.Label className="productFormLabel" style={{color:'darkblue'}}>Product Brand</Form.Label>
           <Form.Control
             className="col-lg-4 col-md-4 col-sm-4 container justify-content-center"
             type="text"
@@ -100,7 +99,7 @@ const AddProduct = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label className="productFormLabel">Product Category</Form.Label>
+          <Form.Label className="productFormLabel" style={{color:'darkblue'}}>Product Category</Form.Label>
           <Form.Select
             required
             value={productCategory}
@@ -117,7 +116,7 @@ const AddProduct = () => {
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label className="productFormLabel">Product Size</Form.Label>
+          <Form.Label className="productFormLabel" style={{color:'darkblue'}}>Product Size</Form.Label>
           <Form.Select
             required
             value={size}
@@ -134,7 +133,7 @@ const AddProduct = () => {
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label className="productFormLabel">Product Price</Form.Label>
+          <Form.Label className="productFormLabel" style={{color:'darkblue'}}>Product Price</Form.Label>
           <Form.Control
             type="number"
             required
@@ -143,9 +142,7 @@ const AddProduct = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-          <Form.Label className="productFormLabel">
-            Product Description
-          </Form.Label>
+          <Form.Label className="productFormLabel" style={{color:'darkblue'}}>Product Description</Form.Label>
           <Form.Control
             as="textarea"
             rows={2}
@@ -154,7 +151,7 @@ const AddProduct = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label className="productFormLabel">Product Image</Form.Label>
+          <Form.Label className="productFormLabel" style={{color:'darkblue'}}>Product Image</Form.Label>
           <Form.Control
             type="file"
             name="image"
