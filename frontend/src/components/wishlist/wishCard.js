@@ -11,11 +11,11 @@ const WishCard = ({wishJson}) => {
                         <Card.Body>
                             <Row>
                                 <Col xs={1} md={2}>
-                                <img src={item.img} className="img-fluid rounded-start" alt="..." />
+                                <img src={item.image} className="img-fluid rounded-start" alt="..." />
                                 </Col>
                                 <Col xs={3} md={6}>
                                     <div></div>
-                                    <a href='#'><div>{item.title}</div></a>
+                                    <a href='#'><div>{item.name}</div></a>
                                     <div>${item.price}</div>
                                 </Col>
                                 <Col xs={3} md={4}>

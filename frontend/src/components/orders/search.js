@@ -2,9 +2,9 @@ import { useState } from 'react';
 import OrderCard from './card';
 
 const Search = ({ orderJson }) => {
-    if ({ orderJson } !== []) {
-        console.log(orderJson)
-    }
+    // if ({ orderJson } !== []) {
+    //     console.log(orderJson)
+    // }
 
     const [searchField, setSearchField] = useState("");
 
@@ -16,9 +16,18 @@ const Search = ({ orderJson }) => {
         order => {
             return (
                 order
-                    .Title
-                    .toLowerCase()
-                    .includes(searchField.toLowerCase()) ||
+                    .product
+                    .filter(
+                        prod => {
+                            return (
+                                prod
+                                    .name
+                                    .toLowerCase()
+                                    .includes(searchField.toLowerCase())
+                            )
+                        }
+                    )   
+                ||
                 order
                     .Number
                     .toLowerCase()

@@ -11,12 +11,12 @@ import Wishlist from './components/wishlist/wishList';
 import Cart from './components/Cart/Cart';
 import Home from "./pages/home/Home";
 import List from "./pages/list/List";
-import Giftcard from './components/Giftcards/Giftcard';
-import GiftcardDetails from './components/Giftcards/GiftcardDetails';
+import Giftcard from './components/GiftCards/Giftcard';
+import GiftcardDetails from './components/GiftCards/GiftcardDetails';
 import UserProfile from './components/UserProfile/Profile'
 import ForgotPassword from './components/ForgotPassword/ForgotPassword'
 import AddProduct from "./components/Product/AddProduct";
-import AddGiftcard from './components/Giftcards/AddGiftcard';
+import AddGiftcard from './components/GiftCards/AddGiftcard';
 
 
 function App() {

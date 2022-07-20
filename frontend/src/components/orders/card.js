@@ -1,40 +1,59 @@
-import {  Container, Card, Col, Row, Image } from 'react-bootstrap';
+import { Container, Card, Col, Row, Image } from 'react-bootstrap';
+import axios from "axios";
+import constants from "../../constants/constants"
 
-const OrderCard = ({orderJson}) => {
-    // if({orderJson} !== [])
-    //     console.log(orderJson)
+const OrderCard = ({ orderJson }) => {
+    const api = axios.create({
+        baseURL: `${constants.API_BASE_URL}`,
+    });
+    const archive = (index) => {
+        const response = api.post("/order/archive/", {
+            order: orderJson[index]
+        });
+        console.log(response)
+    }
     return (
         <>
             {orderJson.map((order, idx) => (
-                <Container key = {order.id} className="p-3">
+                <Container key={order.id} className="p-3">``
                     <Card>
                         <Card.Header>
                             <Row xs={1} md={2} className="g-4">
                                 <Col xs={1} md={2}>
                                     <div>ORDER PLACED</div>
-                                    <div>{order.Date}</div>
+                                    <div>{order.date}</div>
                                 </Col>
                                 <Col xs={3} md={7}>
                                     <div>TOTAL</div>
-                                    <div>{order.Price}</div>
+                                    <div>{order.price}</div>
                                 </Col>
                                 <Col xs={1} md={3}>
-                                    <div>ORDER # {order.Number}</div>
+                                    <div>ORDER # {order.number}</div>
                                 </Col>
                             </Row>
                         </Card.Header>
                         <Card.Body>
-                            <h2 className="text-bold">{order.Delivery}</h2>
-                            <Row>
-                                <Col xs={1} md={2}>
-                                    <Image src={order.Image}/>
-                                </Col>
-                                <Col xs={3} md={7}>
-                                    <a href='#'><div>{order.Title}</div></a>
-                                </Col>
-                            </Row>
+                            <h2 className="text-bold">{order.delivery}</h2>
+                            {order.product.map((prod, idx) => (
+                                <Row>
+                                    <Col xs={1} md={2}>
+                                        <img
+                                            src={prod.image}
+                                            style={{
+                                                width: "200px",
+                                                height: "100px",
+                                                objectFit: "contain"
+                                            }}
+                                            alt="..."
+                                        />
+                                    </Col>
+                                    <Col xs={3} md={7}>
+                                        <a href='#'><div>{prod.name}</div></a>
+                                    </Col>
+                                </Row>
+                            ))}
                         </Card.Body>
-                        <Card.Footer className="text-muted"><a href="#">Archive order</a></Card.Footer>
+                        <Card.Footer className="text-muted"><a href="#" onClick={() => { archive(idx) }}>Archive order</a></Card.Footer>
                     </Card>
                 </Container>
             ))}

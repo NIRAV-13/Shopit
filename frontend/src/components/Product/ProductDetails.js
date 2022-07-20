@@ -3,12 +3,15 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
+import { Row } from 'react-bootstrap';
 import "./ProductCss.css";
 import axios from "axios";
 import constants from "../../constants/constants";
 
 const baseURL = constants.API_BASE_URL;
-
+const api = axios.create({
+  baseURL: `${constants.API_BASE_URL}`,
+});
 const ProductDetails = () => {
   const [data, setData] = useState([]);
   const isLoggedIn = localStorage.getItem("email");
@@ -57,8 +60,19 @@ const ProductDetails = () => {
       .catch((error) => console.log(error));
   };
 
+  const addToWishlist = async (prod) => {
+    const response = api.post("/wishlist/add/", {
+      email: localStorage.getItem("email"),
+      product: prod
+    })
+    .then((res) => console.log(res.data))
+    .catch((error) => console.log(error));;
+  }
   const handleCart = () => {
     add_cart();
+  };
+  const handleWishlist = (index) => {
+    addToWishlist(data[index]);
   };
 
   useEffect(() => {
@@ -84,8 +98,8 @@ const ProductDetails = () => {
                 </div>
                 <p>{prod.productDescription}</p>
                 {prod.productCategory === "Men" ||
-                prod.productCategory === "Women" ||
-                prod.productCategory === "Kids" ? (
+                  prod.productCategory === "Women" ||
+                  prod.productCategory === "Kids" ? (
                   <p>
                     Size <strong>{prod.size}</strong>
                   </p>
@@ -95,22 +109,22 @@ const ProductDetails = () => {
 
                 {isLoggedIn ? (
                   <div className="buttonRow">
-                    <button
-                      className="cart"
-                      onClick={handleCart}
-                      style={{
-                        backgroundColor: isHovering ? "pink" : "",
-                        color: isHovering ? "white" : "",
-                      }}
-                      onMouseEnter={handleMouseEnter}
-                      onMouseLeave={handleMouseLeave}
-                    >
-                      {" "}
-                      <span class="bi bi-handbag-fill"></span> Add to cart
-                    </button>
-
-                    {/* <button className="wishlist"> <span class='bi bi-suit-heart'></span> Add to cart</button> */}
+                      <button
+                        className="cart"
+                        onClick={handleCart}
+                        // style={{
+                        //   backgroundColor: isHovering ? "pink" : "",
+                        //   color: isHovering ? "white" : "",
+                        // }}
+                        // onMouseEnter={handleMouseEnter}
+                        // onMouseLeave={handleMouseLeave}
+                      >
+                        {" "}
+                        <span class="bi bi-handbag-fill"></span> Add to cart
+                      </button>
+                      <button className="wishlist" onClick={handleWishlist(idx)}> <span class='bi bi-suit-heart'></span> Add to wishlist</button>
                   </div>
+
                 ) : (
                   <span className="text-danger">Log in to add to cart</span>
                 )}

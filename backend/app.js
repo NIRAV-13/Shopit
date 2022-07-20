@@ -4,6 +4,7 @@ var cors = require("cors")
 const cartRouter = require('./routes/cartRouter');
 const userRouter = require('./routes/userRouter');
 const orderRouter = require('./routes/orderRouter');
+const wishlistRouter = require('./routes/wishlistRouter');
 const productRouter = require('./routes/Products')
 const giftCardRouter = require("./routes/Giftcards");
 const PORT = process.env.PORT || 8080;
@@ -22,6 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/cart',cartRouter);
 app.use('/user',userRouter);
 app.use("/", orderRouter);
+app.use("/", wishlistRouter);
 app.use("/", productRouter)
 app.use("/", giftCardRouter);
 app.listen(PORT, () => {
