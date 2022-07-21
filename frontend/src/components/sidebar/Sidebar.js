@@ -29,10 +29,10 @@ const Sidebar = () => {
                             <span>Users</span>
                         </li>
                     </Link>
-                    <Link to="/products" style={{ textDecoration: "none" }}>
+                    <Link to="/products/addproduct" style={{ textDecoration: "none" }}>
                         <li>
                             <StoreIcon className="icon" />
-                            <span>Products</span>
+                            <span>Add Products</span>
                         </li>
                     </Link>
                     <Link to="/orders_admin" style={{ textDecoration: "none" }}>
@@ -47,10 +47,10 @@ const Sidebar = () => {
                             <span>Notifications</span>
                         </li>
                     </Link>
-                    <Link to="/giftcards_add/addgiftcard" style={{ textDecoration: "none" }}>
+                    <Link to="/giftcards/addgiftcard" style={{ textDecoration: "none" }}>
                         <li>
                             <CardGiftcardIcon className="icon" />
-                            <span>Gift Cards</span>
+                            <span>Add Gift Cards</span>
                         </li>
                     </Link>
                     <p className="title">USER</p>
