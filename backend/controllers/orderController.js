@@ -2,6 +2,7 @@ const express = require("express");
 const orderModel = require("../models/orderModel");
 const { v4: uuidv4 } = require('uuid');
 const ProductModel = require('../models/Products')
+const GiftcardModel = require('../models/Giftcards')
 
 /**
  * This function adds a new order into the db. This functionality is available to the users who are registered with our website.
@@ -47,13 +48,26 @@ const getTotalPrice = async (products) => {
 const getProducts = async (prods) => {
     var res = []
     for (const prod of prods) {
-        const product = await ProductModel.findOne({ product_id: prod.product_id })
-        res.push({
-            id: prod.product_id,
-            name: product.productName,
-            image: product.productImage,
-            price: product.productPrice
-        })
+        if (prod.product_name === "gift card") {
+            const giftcard = await GiftcardModel.findOne({ _id: prod.product_id })
+            console.log(giftcard)
+            res.push({
+                id: prod.product_id,
+                name: giftcard.giftcardName,
+                image: giftcard.giftcardImage,
+                price: giftcard.giftcardPrice
+            })
+        }
+        else {
+            const product = await ProductModel.findOne({ _id: prod.product_id })
+            console.log(product)
+            res.push({
+                id: prod.product_id,
+                name: product.productName,
+                image: product.productImage,
+                price: product.productPrice
+            })
+        }
     }
     return res
 }

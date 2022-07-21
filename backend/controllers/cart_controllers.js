@@ -108,6 +108,15 @@ async function decreasceQuantity(req,res){
 
     }
 }
+async function removeAll(req,res){
+    var cart = await CartModel.deleteMany({}).then(function(){
+        console.log("Data deleted"); // Success
+        console.log(cart)
+        res.send({cart:cart})
+    }).catch(function(error){
+        console.log(error); // Failure
+    });
+}
 
 async function removeProduct(req,res){
     try{
@@ -126,4 +135,4 @@ async function removeProduct(req,res){
     }
 }
 
-module.exports = { addToCart, getCart, decreasceQuantity, increasceQuantity,removeProduct}
+module.exports = { addToCart, getCart, decreasceQuantity, increasceQuantity,removeProduct,removeAll}
