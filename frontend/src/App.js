@@ -11,6 +11,7 @@ import Wishlist from './components/wishlist/wishList';
 import Cart from './components/Cart/Cart';
 import Home from "./pages/home/Home";
 import List from "./pages/list/List";
+import Single from "./pages/single/single";
 import Giftcard from './components/Giftcards/Giftcard';
 import GiftcardDetails from './components/Giftcards/GiftcardDetails';
 import UserProfile from './components/UserProfile/Profile'
@@ -39,6 +40,7 @@ function App() {
           <Route path='/cart' element={<Cart />} />
           <Route path="/admin" element={<Home />} />
           <Route path="/users" element={<List />} />
+          <Route path="//users/view" element={<Single />} />
           <Route path="/dashboard_admin" element={<Home />} />
           <Route path="/products" element={<Home />} />
           <Route path="/orders_admin" element={<Home />} />
