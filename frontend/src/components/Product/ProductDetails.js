@@ -47,6 +47,7 @@ const ProductDetails = () => {
     console.log(localStorage.getItem("email"));
     localStorage.getItem("email");
     console.log(id);
+    console.log(data);
     let res = await axios
       .post(url, {
         user_id: localStorage.getItem("email"),
@@ -54,9 +55,15 @@ const ProductDetails = () => {
           _id: id,
           productName: data[0].productName,
           productPrice: data[0].productPrice,
+          productImage: data[0].productImage,
+          productSize: data[0].size
         },
       })
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        navigate("/cart")
+        console.log(res.data)
+      }
+        )
       .catch((error) => console.log(error));
   };
 
