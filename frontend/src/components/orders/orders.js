@@ -4,27 +4,37 @@ import React, { useEffect, useState } from "react";
 import Footer from '../Footer/Footer';
 import NavBar from '../NavBar/NavBar';
 import axios from "axios";
-import {orderJson,cancelledOrders,pendingOrders} from '../orders/ordersArray'
 import Search from './search';
 import constants from "../../constants/constants"
+
 const api = axios.create({
     baseURL: `${constants.API_BASE_URL}`,
-  });
+});
+
 const Orders = () => {
     const [order, setOrder] = useState([]);
     const [pendingOrder, setPending] = useState([]);
-    const [cancelledOrder, setOrderPending] = useState([]);
+    const [cancelledOrder, setCancelled] = useState([]);
     const data = async () => {
-        const response = await api.get("/order/get");
+        const response = await api.get("/order/get/", {
+            params: {
+                email: localStorage.getItem("email"),
+            }
+        });
         const orders = response.data
-        setOrder(response.data);
-      };
-    useEffect(()=>{
+        setPending(orders.filter((item) => {
+            return item['status'] === 'pending';
+        }))
+        setOrder(orders.filter((item) => {
+            return item['status'] === 'delivered';
+        }));
+        setCancelled(orders.filter((item) => {
+            return item['status'] === 'cancelled';
+        }));
+    };
+    useEffect(() => {
         data();
     });
-    
-
-
     return (
         <>
             <NavBar></NavBar>
@@ -36,15 +46,13 @@ const Orders = () => {
 
                     </Tab>
                     <Tab eventKey="pending" title="Yet to be delivered">
-                        <Search orderJson={pendingOrders}></Search>
+                        <Search orderJson={pendingOrder}></Search>
 
                     </Tab>
                     <Tab eventKey="cancelled" title="Cancelled orders">
-                        <Search orderJson={cancelledOrders}></Search>
-
+                        <Search orderJson={cancelledOrder}></Search>
                     </Tab>
                 </Tabs>
-
             </Container>
             <Footer></Footer>
         </>
