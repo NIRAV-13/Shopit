@@ -84,7 +84,7 @@ const Register = (props) => {
                 if (res.status === 200 && res.data['message'] === "User registered successfully!") {
                     alert(res.data['message'])
                     localStorage.setItem("email", enteredEmail);
-                    history("/dashboard")
+                    history("/login")
                     window.location.reload();
                 } else if (res.status === 200 && res.data['message'] === "User already exists.") {
                     history("/register")

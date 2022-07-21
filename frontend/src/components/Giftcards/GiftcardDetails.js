@@ -41,12 +41,16 @@ const GiftcardDetails = () => {
           _id: id,
           productName: data[0].giftcardName,
           productPrice: data[0].giftcardPrice,
+          productImage: data[0].giftcardImage,
         },
       })
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        navigate("/cart")
+        console.log(res.data)
+      }
+        )
       .catch((error) => console.log(error));
   };
-
   const handleCart = () => {
     add_cart();
   };
