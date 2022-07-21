@@ -22,6 +22,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import NavBar from "../NavBar/NavBar";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import constants from "../../constants/constants"
 const api = axios.create({
   baseURL: `${constants.API_BASE_URL}`,
@@ -31,6 +32,11 @@ const Cart = () => {
   const [items, setItem] = useState([]);
   const [amount, setAmount] = useState(0)
   const [shipping, setShipping] = useState(0)
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = `/orders`;
+    navigate(path);
+  };
   const decrement = (index) => {
     var temp = [];
     temp = Object.assign(temp, items);
@@ -47,10 +53,12 @@ const Cart = () => {
 
   };
   const addToOrder = () => {
+    console.log(items)
     const response = api.post("/order/add/", {
       user_id: localStorage.getItem("email"),
       product: items
-    });
+    }).then(removeAll())
+    .catch((error) => console.log(error));
     console.log(response)
   }
   const handleCart = () => {
@@ -71,7 +79,13 @@ const Cart = () => {
     res();
     setItem(temp);
   };
-
+  const removeAll = () => {
+    const res = async () => {
+      const response = await api.post("/cart/removeAll").then(routeChange());
+      setItem(response.data.cart.product);
+    };
+    res()
+  }
   const remove = (index) => {
     const res = async () => {
       const response = await api.post("/cart/remove_item", {
