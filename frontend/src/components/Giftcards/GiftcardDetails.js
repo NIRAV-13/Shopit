@@ -9,19 +9,48 @@ import axios from 'axios';
 import constants from "../../constants/constants"
 
 const baseURL = constants.API_BASE_URL;
+
 const GiftcardDetails = () => {
     let navigate = useNavigate();
     const { id } = useParams();
+
     const [data, setData] = useState([]);
+
+  const routeChange = () => {
+    let path = `/wishlist`;
+    navigate(path);
+  };
     const fetchGiftcard = async () => {
         let res = await axios({
             method: "GET",
             url: baseURL+"/fetchGiftcardByGiftcardID/" + id
         });
-        debugger;
-        console.log(res.data);
+
         setData(res.data)
     };
+
+  const add_cart = async () => {
+    let url = baseURL + "/cart/add_cart/";
+    console.log(localStorage.getItem("email"));
+    localStorage.getItem("email");
+    console.log(data[0]);
+    let res = await axios
+      .post(url, {
+        user_id: localStorage.getItem("email"),
+        product: {
+          _id: id,
+          productName: data[0].giftcardName,
+          productPrice: data[0].giftcardPrice,
+        },
+      })
+      .then((res) => console.log(res.data))
+      .catch((error) => console.log(error));
+  };
+
+  const handleCart = () => {
+    add_cart();
+  };
+
     useEffect(() => {
         fetchGiftcard()
     }, [])
@@ -43,9 +72,9 @@ const GiftcardDetails = () => {
                                         <p className="text-start mt-5">{gift.giftcardDescription}</p>
                                         <p className="text-start fw-bold">${gift.giftcardPrice}</p>
                                         <p className="text-start"><small className="text-muted">In stock</small></p>
-                                        <button className="btn btn-secondary mt-5">Add to Cart</button>
+                                        <button className="btn btn-secondary mt-5" onClick={handleCart}>Add to Cart</button>
                                         <br/>
-                                        {/* <button className="btn btn-secondary mt-5" onClick={routeChange}>
+                                        {/* <button className="btn btn-secondary mt-5" onClick={handleCart}>
                                         Add
                                         </button> */}
                                     </div>
