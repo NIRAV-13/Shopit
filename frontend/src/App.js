@@ -17,6 +17,7 @@ import UserProfile from './components/UserProfile/Profile'
 import ForgotPassword from './components/ForgotPassword/ForgotPassword'
 import AddProduct from "./components/Product/AddProduct";
 import AddGiftcard from './components/Giftcards/AddGiftcard';
+import Feedback from "./components/Feedback/Feedback";
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
           <Route path='giftcards/giftcard/:id' element={<GiftcardDetails />} />
           <Route path="/giftcards" element={<Giftcard />} />
           <Route path='/giftcards/addgiftcard' element={<AddGiftcard />} />
+          <Route path="/feedback" element={<Feedback />} />
 
         </Routes>
       </BrowserRouter>

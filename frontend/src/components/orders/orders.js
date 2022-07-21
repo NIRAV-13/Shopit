@@ -6,6 +6,7 @@ import NavBar from '../NavBar/NavBar';
 import axios from "axios";
 import Search from './search';
 import constants from "../../constants/constants"
+import { useNavigate } from 'react-router-dom';
 
 const api = axios.create({
     baseURL: `${constants.API_BASE_URL}`,
@@ -15,6 +16,7 @@ const Orders = () => {
     const [order, setOrder] = useState([]);
     const [pendingOrder, setPending] = useState([]);
     const [cancelledOrder, setCancelled] = useState([]);
+    const navigate=useNavigate();
     const data = async () => {
         const response = await api.get("/order/get/", {
             params: {
@@ -35,6 +37,10 @@ const Orders = () => {
     useEffect(() => {
         data();
     });
+    const navigateFeedback = () => {
+
+        navigate('/feedback');
+      };
     return (
         <>
             <NavBar></NavBar>
@@ -43,6 +49,7 @@ const Orders = () => {
                 <Tabs defaultActiveKey="history" id="uncontrolled-tab-example" className="mb-3">
                     <Tab eventKey="history" title="Order History">
                         <Search orderJson={order}></Search>
+                        <button onClick={navigateFeedback}>Give Feedback</button>
 
                     </Tab>
                     <Tab eventKey="pending" title="Yet to be delivered">
