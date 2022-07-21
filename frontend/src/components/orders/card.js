@@ -10,7 +10,7 @@ const OrderCard = ({ orderJson }) => {
     let navigate = useNavigate();
     const routeChange = (prod) => {
         console.log(prod)
-        var path = ``;
+        var path = '';
         if (prod.name === "gift card")
             path = `/giftcards/giftcard/${prod.id}`
         else
@@ -26,7 +26,7 @@ const OrderCard = ({ orderJson }) => {
     return (
         <>
             {orderJson.map((order, idx) => (
-                <Container key={order.id} className="p-3">``
+                <Container key={order.id} className="p-3">
                     <Card>
                         <Card.Header>
                             <Row xs={1} md={2} className="g-4">
