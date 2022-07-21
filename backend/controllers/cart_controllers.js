@@ -12,16 +12,19 @@ async function addToCart(req, res) {
         const userid = req.body.user_id
         const cart = await CartModel.findOne({ user_id: userid })
         let products = req.body.product
+        console.log(products);
         const pid = products._id
         const pname = products.productName
         const pprice = products.productPrice
+        const image = products.productImage
         const pquantity = 1
         if (!cart) {
             const new_cart_obj = await CartModel.create({
                 user_id: userid,
                 product: [
                     {
-                        product_id: pid, product_name: pname, product_price: pprice, product_quantity: pquantity
+                        product_id: pid, product_name: pname, product_price: pprice, product_quantity: pquantity, productImage:image,size:products.productSize
+
                     }
                 ],
                 coupon: "SHOPITNEW"
@@ -31,7 +34,7 @@ async function addToCart(req, res) {
             })
         } else {
             cart.product.push({
-                product_id: pid, product_name: pname, product_price: pprice, product_quantity: pquantity
+                product_id: pid, product_name: pname, product_price: pprice, product_quantity: pquantity, productImage:image,size:products.productSize
             })
             await cart.save()
             return res.status(200).json({

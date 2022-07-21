@@ -8,7 +8,10 @@ var CartSchema = new Schema({
             product_id: {type: String,  required: [true, 'Missing required value']},
             product_name: { type: String, required: [true, 'Missing required value'] },
             product_price: { type: Number, required: [true, 'Missing required value '] },
-            product_quantity: Number
+            product_quantity: Number,
+            productImage: String,
+            size: String
+            
         }
     ],
     coupon:String

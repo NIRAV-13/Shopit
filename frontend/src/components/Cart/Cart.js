@@ -147,7 +147,7 @@ const Cart = () => {
                   <TableCell align="left" sx={{ width: "20vw" }}>
                     <img
                       alt="new"
-                      src={row.img}
+                      src={row.productImage}
                       style={{ width: "20%", height: "20%" }}
                     ></img>
                   </TableCell>
