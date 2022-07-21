@@ -23,11 +23,17 @@ const Datatable = () => {
         })
     }, []);
 
-    const handleDelete = (id) => {
+    const handleDelete = (user_id) => {
         const getAPI_delete = baseURL+"/delete";
-        axios.post(getAPI_delete, {id}).then((res,req) => {
+        axios.post(getAPI_delete, {user_id}).then((res,req) => {
             console.log(req.body);
         })
+    };
+
+    const view_user = (user_email_id) => {
+        const current_email_id = user_email_id;
+        localStorage.setItem("user_id",current_email_id);
+        console.log(current_email_id);
     };
 
     const actionColumn = [
@@ -39,11 +45,13 @@ const Datatable = () => {
                 return (
                     <div className="cellAction">
                         <Link to="/users/view" style={{ textDecoration: "none" }}>
-                            <div className="viewButton">View</div>
+                            <div className="viewButton"
+                                 onClick={() => view_user(params.row.user_email_id)}
+                            >View</div>
                         </Link>
                         <div
                             className="deleteButton"
-                            onClick={() => handleDelete(params.row.id)}
+                            onClick={() => handleDelete(params.row.user_id)}
                         >
                             Delete
                         </div>
@@ -59,6 +67,7 @@ const Datatable = () => {
             </div>
             <DataGrid
                 className="datagrid"
+                getRowId={(row) => row.user_id}
                 rows={data}
                 columns={userColumns.concat(actionColumn)}
                 pageSize={9}
