@@ -43,7 +43,7 @@ const getTotalPrice = async (products) => {
         total = total + prod.price
     }
     console.log(total.toString())
-    return total.toString();
+    return "CDN$ "+total.toString();
 }
 const getProducts = async (prods) => {
     var res = []
