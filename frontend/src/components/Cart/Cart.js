@@ -24,29 +24,39 @@ import NavBar from "../NavBar/NavBar";
 import axios from "axios";
 import constants from "../../constants/constants"
 const api = axios.create({
-    baseURL: `${constants.API_BASE_URL}`,
-  });
+  baseURL: `${constants.API_BASE_URL}`,
+});
 
 const Cart = () => {
   const [items, setItem] = useState([]);
-  const[amount,setAmount]=useState(0)
-  const[shipping,setShipping]=useState(0)
+  const [amount, setAmount] = useState(0)
+  const [shipping, setShipping] = useState(0)
   const decrement = (index) => {
     var temp = [];
     temp = Object.assign(temp, items);
     temp[index].product_quantity -= 1;
     temp = temp.filter((temp) => temp.product_quantity > 0);
     const res = async () => {
-        await api.post("/cart/quantity_dec", {
-          email: localStorage.getItem("email"),
-          index: index,
-        });
-      };
+      await api.post("/cart/quantity_dec", {
+        email: localStorage.getItem("email"),
+        index: index,
+      });
+    };
     res();
     setItem(temp);
-    
-  };
 
+  };
+  const addToOrder = () => {
+    const response = api.post("/order/add/", {
+      user_id: localStorage.getItem("email"),
+      product: items
+    });
+    console.log(response)
+  }
+  const handleCart = () => {
+    console.log(items)
+    addToOrder();
+  };
   const increment = (index) => {
     var temp = [];
     temp = Object.assign(temp, items);
@@ -62,9 +72,9 @@ const Cart = () => {
     setItem(temp);
   };
 
-  const remove = (index)=>{
+  const remove = (index) => {
     const res = async () => {
-      const response =  await api.post("/cart/remove_item", {
+      const response = await api.post("/cart/remove_item", {
         email: localStorage.getItem("email"),
         index: index,
       });
@@ -81,15 +91,15 @@ const Cart = () => {
       setItem(response.data.data.product);
     };
     data();
-    
+
   }, []);
   useEffect(() => {
-    let total_price = items.reduce((total, item)=>total+(item.product_quantity*item.product_price),0)
+    let total_price = items.reduce((total, item) => total + (item.product_quantity * item.product_price), 0)
     setAmount(total_price)
-    if(amount>0){
-        setShipping(10)
+    if (amount > 0) {
+      setShipping(10)
     }
-    
+
   }, [items]);
   return (
     <>
@@ -160,7 +170,7 @@ const Cart = () => {
                   </TableCell>
                   <TableCell align="left">${row.product_price}</TableCell>
                   <TableCell align="left">
-                  <Button
+                    <Button
                       aria-label="delete"
                       color="primary"
                       onClick={() => {
@@ -169,7 +179,7 @@ const Cart = () => {
                     >
                       <ClearSharpIcon sx={{ fontSize: "small" }} />
                     </Button>
-                   
+
                   </TableCell>
                 </TableRow>
               ))}
@@ -202,12 +212,12 @@ const Cart = () => {
                   <b>Shipping Charges</b> &emsp; {shipping}
                 </Typography>
                 <Typography variant="body2" align="left" sx={{ fontSize: 12 }}>
-                  <b>Total</b> &emsp; {amount+shipping}
+                  <b>Total</b> &emsp; {amount + shipping}
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button sx={{ ml: 1, mb: 1 }} size="small" variant="outlined">
-                  Checkout{" "}
+                <Button onClick={handleCart} sx={{ ml: 1, mb: 1 }} size="small" variant="outlined" >
+                  Checkout
                 </Button>
               </CardActions>
             </Card>

@@ -1,6 +1,7 @@
 const express = require("express");
 const orderModel = require("../models/orderModel");
 const { v4: uuidv4 } = require('uuid');
+const ProductModel = require('../models/Products')
 
 /**
  * This function adds a new order into the db. This functionality is available to the users who are registered with our website.
@@ -8,6 +9,8 @@ const { v4: uuidv4 } = require('uuid');
  * @param {*} res 
  * @returns 
  */
+
+
 
 const getOrders = async (req, res) => {
     const user_id = req.query.email
@@ -24,48 +27,63 @@ const getOrders = async (req, res) => {
         res.status(500).send(error);
     }
 }
-const getTodayDate=()=>{
+const getTodayDate = () => {
     const today = new Date()
-    const day = today.getDate();        
-    const month = today.getMonth();     
+    const day = today.getDate();
+    const month = today.getMonth();
     const year = today.getFullYear();
 
-    return day+"/"+month+"/"+year;
+    return day + "/" + month + "/" + year;
 }
-const getTotalPrice = (products) => {
+const getTotalPrice = async (products) => {
     var total = 0
-    for(const prod of products){
-        total= total + prod.price
+    // console.log(products)
+    for (const prod of products) {
+        total = total + prod.price
     }
-    console.log(total)
-    return total;
+    console.log(total.toString())
+    return total.toString();
 }
-const addOrder = async (req,res) => {
+const getProducts = async (prods) => {
+    var res = []
+    for (const prod of prods) {
+        const product = await ProductModel.findOne({ product_id: prod.product_id })
+        res.push({
+            id: prod.product_id,
+            name: product.productName,
+            image: product.productImage,
+            price: product.productPrice
+        })
+    }
+    return res
+}
+const addOrder = async (req, res) => {
     const user_id = req.body.user_id
     const prods = req.body.product
+    const products = await getProducts(prods)
+    const totalPrice = await getTotalPrice(products)
     var newOrder = new orderModel({
-            status: "pending",
-            user_id: user_id,
-            date: getTodayDate(),
-            price: getTotalPrice(prods),
-            number: uuidv4(),
-            delivery: "Delivery Pending",
-            product: prods
+        status: "pending",
+        user_id: user_id,
+        date: getTodayDate(),
+        price: totalPrice,
+        number: uuidv4(),
+        delivery: "Delivery Pending",
+        product: products
     })
-    console.log(newOrder)
-    await newOrder.save(function(err,order){
-        if(err) return console.error(err);
+    await newOrder.save(function (err, order) {
+        if (err) return console.error(err);
         console.log(order.number + " saved to order to collection.");
     })
     return res.status(200).send({ order: newOrder });
-
 }
+
 const archiveOrders = async (req, res) => {
     try {
         console.log(req)
         const order_id = req.body.order.number
         console.log(order_id)
-         var newOrder = {
+        var newOrder = {
             status: "archived",
             user_id: req.body.order.user_id,
             date: req.body.order.date,
@@ -74,7 +92,7 @@ const archiveOrders = async (req, res) => {
             delivery: req.body.order.delivery,
             product: req.body.order.product
         }
-        var order = await orderModel.findOneAndUpdate({ number: order_id },newOrder,{overwrite:true})
+        var order = await orderModel.findOneAndUpdate({ number: order_id }, newOrder, { overwrite: true })
         console.log(order)
         await order.save()
         return res.status(200).send({ order: order });

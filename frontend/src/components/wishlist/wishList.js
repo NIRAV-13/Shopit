@@ -11,8 +11,8 @@ const api = axios.create({
 
 
 const Wishlist = (props) => {
-    console.log(props)
     const [wishlist, setWishlist] = useState([]);
+    
     const data = async () => {
         const response = await api.get("/wishlist/get/", {
             params: {

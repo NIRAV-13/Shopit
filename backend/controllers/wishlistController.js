@@ -19,13 +19,14 @@ const getWishlist = async (req, res) => {
     }
 }
 const addWishlist = async (req,res) => {
-    console.log(req.body)
     const user_id = req.body.email
+    const prod_id = req.body.product_id
     const prod = req.body.product
 
     var newWishlist = new wishlistModel({
             image: prod.productImage,
             user_id: user_id,
+            prod_id: prod_id,
             name: prod.productName,
             price: prod.productPrice,
             description: prod.productDescription,

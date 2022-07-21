@@ -51,7 +51,7 @@ async function getCart(req,res)
     try{
         const email = req.body.email
         const cart = await CartModel.findOne({user_id:email})
-        console.log(cart);
+        // console.log(cart);
         if(cart){
             return res.status(200).json({
                 "data":cart

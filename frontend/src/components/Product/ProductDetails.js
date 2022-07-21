@@ -46,7 +46,7 @@ const ProductDetails = () => {
     let url = baseURL + "/cart/add_cart/";
     console.log(localStorage.getItem("email"));
     localStorage.getItem("email");
-    console.log(data[0]);
+    console.log(id);
     let res = await axios
       .post(url, {
         user_id: localStorage.getItem("email"),
@@ -63,10 +63,11 @@ const ProductDetails = () => {
   const addToWishlist = async (prod) => {
     const response = api.post("/wishlist/add/", {
       email: localStorage.getItem("email"),
+      product_id: id,
       product: prod
     })
-    .then((res) => console.log(res.data))
-    .catch((error) => console.log(error));;
+      .then(routeChange())
+      .catch((error) => console.log(error));
   }
   const handleCart = () => {
     add_cart();
@@ -109,20 +110,20 @@ const ProductDetails = () => {
 
                 {isLoggedIn ? (
                   <div className="buttonRow">
-                      <button
-                        className="cart"
-                        onClick={handleCart}
-                        // style={{
-                        //   backgroundColor: isHovering ? "pink" : "",
-                        //   color: isHovering ? "white" : "",
-                        // }}
-                        // onMouseEnter={handleMouseEnter}
-                        // onMouseLeave={handleMouseLeave}
-                      >
-                        {" "}
-                        <span class="bi bi-handbag-fill"></span> Add to cart
-                      </button>
-                      <button className="wishlist" onClick={handleWishlist(idx)}> <span class='bi bi-suit-heart'></span> Add to wishlist</button>
+                    <button
+                      className="cart"
+                      onClick={handleCart}
+                      style={{
+                        backgroundColor: isHovering ? "pink" : "",
+                        color: isHovering ? "white" : "",
+                      }}
+                      onMouseEnter={handleMouseEnter}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      {" "}
+                      <span className="bi bi-handbag-fill"></span> Add to cart
+                    </button>
+                    <button className="wishlist" onClick={() => { handleWishlist(idx) }}> <span class='bi bi-suit-heart'></span> Add to wishlist</button>
                   </div>
 
                 ) : (
