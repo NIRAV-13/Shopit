@@ -1,5 +1,3 @@
-https://github.com/NIRAV-13/Bread-Breakfast-Serverless-Application.git
-https://github.com/NIRAV-13/Distributed-Database-System.git
-https://github.com/NIRAV-13/Shopit.git
+https://Nirav5813@bitbucket.org/cloudkettle/alc-cloudpages.git
 END_OF_FILE
 
