@@ -4,6 +4,9 @@
 USERNAME="NIRAV-13"
 TOKEN="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"
 
+# Set OLDPWD to the script's current working directory
+OLDPWD=$(pwd)
+
 # Read repositories from file into an array
 repositories=()
 while read -r line; do
@@ -33,5 +36,5 @@ do
     git push -u origin master
 
     # Change directory back to script directory
-    cd -
+    cd $OLDPWD
 done
